@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <%- include('../partials/sidebar') %>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <%- include('../partials/topbar', {title : 'Cadastro de Motorista'}) %>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">          
+          <div class="col-md-12">
+            <div class="card card-user">
+              <div class="card-header">
+                <h5 class="card-title">Novo Motorista</h5>
+              </div>
+              <div class="card-body">
+                <form  method="POST" action="/cliente-criacao">
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <input type="hidden" name="_id" value="<%= data._id%>"/>
+                      <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" name="nome" class="form-control" value="<%= data.nome %>" placeholder="Nome Completo" required>
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="text" name="telefone" id="inputTelefone" class="form-control" placeholder="(00) 0-0000-0000" value="<%= data.telefone %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" value="<%= data.email %>" class="form-control" placeholder="email@email.com" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Celular</label>
+                        <input type="text" name="celular" id="inputCelular" class="form-control" placeholder="(00) 0-0000-0000" value="<%= data.celular %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>Celular 2</label>
+                        <input type="text" name="celular2" id="inputCelular2" class="form-control" placeholder="(00) 0-0000-0000" value="<%= data.celular2 %>">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Operadora</label>
+                        <input type="text" name="operadora" class="form-control" placeholder="" value="<%= data.operadora %>" >
+                      </div>
+                    </div>                    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Endereço</label>
+                        <input type="text" name="endereco" class="form-control" placeholder="" value="<%= data.endereco %>" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 pr-1">
+                      <div class="form-group">
+                        <label>Numero</label>
+                        <input type="text" name="numero" class="form-control justNumber" placeholder="" value="<%= data.numero %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>Complemento</label>
+                        <input type="text" name="complemento" id="inputComplemento" class="form-control" placeholder="" value="<%= data.complemento %>">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Bairro</label>
+                        <input type="text" name="bairro" value="<%= data.bairro %>" class="form-control" placeholder="" required>
+                      </div>
+                    </div>                    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" name="cidade" class="form-control" placeholder="" value="<%= data.cidade %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>Estado</label>
+                        <input type="hidden" value="<%= data.estado %>" id="estadohidden" />
+                        <select class="form-control" id="selectEstado" name="estado" required>
+                          <option value="">Selecione</option>
+                          <option value="AC">Acre</option>
+                          <option value="AL">Alagoas</option>
+                          <option value="AP">Amapá</option>
+                          <option value="AM">Amazonas</option>
+                          <option value="BA">Bahia</option>
+                          <option value="CE">Ceará</option>
+                          <option value="DF">Distrito Federal</option>
+                          <option value="ES">Espírito Santo</option>
+                          <option value="GO">Goiás</option>
+                          <option value="MA">Maranhão</option>
+                          <option value="MT">Mato Grosso</option>
+                          <option value="MS">Mato Grosso do Sul</option>
+                          <option value="MG">Minas Gerais</option>
+                          <option value="PA">Pará</option>
+                          <option value="PB">Paraíba</option>
+                          <option value="PR">Paraná</option>
+                          <option value="PE">Pernambuco</option>
+                          <option value="PI">Piauí</option>
+                          <option value="RJ">Rio de Janeiro</option>
+                          <option value="RN">Rio Grande do Norte</option>
+                          <option value="RS">Rio Grande do Sul</option>
+                          <option value="RO">Rondônia</option>
+                          <option value="RR">Roraima</option>
+                          <option value="SC">Santa Catarina</option>
+                          <option value="SP">São Paulo</option>
+                          <option value="SE">Sergipe</option>
+                          <option value="TO">Tocantins</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" name="cep" class="form-control" value="<%= data.cep %>" placeholder="00000-000">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- -->
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>RG</label>
+                        <input type="text" id="inputRG" name="rg" class="form-control justNumber" placeholder="x.xxx.xxx-x" value="<%= data.rg %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-2 px-1">
+                      <div class="form-group">
+                        <label>UF</label>
+                        <input type="text" name="uf" class="form-control" placeholder="" value="<%= data.uf %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-2 px-1">
+                      <div class="form-group">
+                        <label>Emissor</label>
+                        <input type="text" name="emissor" class="form-control" placeholder="ssp" value="<%= data.emissor %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Data Emissão</label>
+                        <input type="date" name="dataEmissao" class="form-control maxDateToday"  placeholder="99/99/9999" value="<%= data.dataEmissao %>" >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" id="inputCPF" name="cpf" class="form-control" placeholder="xxx.xxx.xxx-xx" value="<%= data.cpf %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>Data Nascimento</label>
+                        <input type="date" name="dataNascimento" class="form-control maxDateToday" placeholder="99/99/9999" value="<%= data.dataNascimento %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Registro CNH</label>
+                        <input type="text" name="registroCNH" class="form-control justNumber" placeholder="" value="<%= data.registroCNH %>"  required>
+                      </div>
+                    </div>                    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>Validade CNH</label>
+                        <input type="date" name="validade" class="form-control minDateToday" placeholder="99/99/9999" value="<%= data.validade %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>Primeira Habilitação</label>
+                        <input type="date" name="primeiraHabilitacao" class="form-control maxDateToday" placeholder="99/99/9999" value="<%= data.primeiraHabilitacao %>">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Data de Emissão CNH</label>
+                        <input type="date" name="dataEmissaoCNH" data-date-split-input="true"  class="form-control maxDateToday" placeholder="99/99/9999" value="<%= data.dataEmissaoCNH %>"  required>
+                      </div>
+                    </div>                    
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 pr-1">
+                      <div class="form-group">
+                        <label>Categoria</label>
+                        <input type="text" name="categoria" class="form-control" placeholder="" value="<%= data.categoria %>" required>
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="form-group">
+                        <label>Cédula</label>
+                        <input type="text" name="cedula" class="form-control" placeholder="" value="<%= data.cedula %>">
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="form-group">
+                        <label>Detran</label>
+                        <input type="text" name="detran" class="form-control" placeholder="" value="<%= data.detran %>">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pl-1">
+                      <div class="form-group">
+                        <label>Pontuação Atual</label>
+                        <input type="text" name="pontuacaoCNH" class="form-control justNumber" placeholder="" value="<%= data.pontuacaoCNH %>" required>
+                      </div>
+                    </div>
+                  </div>  
+
+
+                  <div class="card-body" style="padding: 0px;">
+                      <h5 class="card-title">Referências</h5>
+                  <div class="col-md-12 pt-2" style="border: 1px solid #dbbbbb; border-radius: 4px;">      
+                      <div class="row">                                              
+                          <div class="col-md-3 pr-1">
+                              <div class="form-group">
+                                  <label>Nome</label>
+                                  <input type="text" id="nomeRef" class="form-control" placeholder="">
+                              </div>
+                          </div>   
+                          <div class="col-md-3 px-1">
+                              <div class="form-group">
+                                  <label>Telefone</label>
+                                  <input type="text" id="telefoneRef" class="form-control" placeholder="">
+                              </div>
+                          </div>   
+                          <div class="col-md-2 px-1">
+                              <div class="form-group">
+                                  <label>Tipo</label>
+                                  <select class="form-control" id="tipoRef">
+                                      <option value="">Selecione</option>
+                                      <option value="Pessoal">Pessoal</option>
+                                      <option value="Profissional">Profissional</option>                                      
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-2 px-1">
+                              <div class="form-group">
+                                  <label>Grau Parentesco</label>
+                                  <input type="text" id="grauParentesco" class="form-control" placeholder="">
+                              </div>
+                          </div>     
+                          <div class="col-md-2 pl-1 pt-3">
+                              <input type="button" id="btnAddReferencia" class="btn btn-info" value="Adicionar" />                                                            
+                          </div>
+                      </div>
+                  </div>      
+                                                          
+          
+          <div class="row">
+              <div class="col-md-12 pr-3 pl-3">
+                  <input type="hidden" name="referencias" id="inputReferencias" value="<%= data.referencias %>" />
+                  <table class="table">
+                      <thead id="referencias" class=" text-primary">
+                      <th>Nome</th>
+                      <th>Telefone</th>
+                      <th>Tipo</th>
+                      <th>Grau</th>                                                    
+                      </thead>
+                      <tbody id="allreferences">
+                          <%
+                          if(data.referencias != undefined){
+                          var y = JSON.parse(data.referencias);
+                          
+                          y.forEach(item => { %>
+                            <tr>
+                                <td class="nome">
+                                    <%= item.Nome %>
+                                </td>
+                                 <td class="telefone">
+                                  <%= item.Telefone %>
+                                </td>
+                                <td class="tipo">
+                                    <%= item.Tipo %>
+                                  </td>
+                                  <td class="grau">
+                                      <%= item.Grau %>
+                                    </td>
+                                    <td class="btnDelete">
+                                        <i id="<%= item.Id %>" class="removeRef nc-icon nc-simple-remove"/>
+                                    </td>
+                                </tr>
+                            
+                            <% });} %>
+                      </tbody>
+                  </table>
+              </div>
+          </div>  
+          </div>   
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" id="btnSubmit" class="btn btn-primary">Salvar</button>
+                    </div>
+                  </div>                  
+                </form>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <%- include('../partials/footer') %>
+      </footer>
+    </div>
+  </div>
+  <%- include('../partials/scripts') %>
+    <script>
+      $(document).ready(function () {
+        var testreferencia = [];
+        loadReferencias();
+        if($("#estadohidden").val() != null){
+              setSelectedIndex(document.getElementById("selectEstado"),$("#estadohidden").val()); 
+            }
+
+        var today = new Date().toISOString().split('T')[0];
+        $(".maxDateToday").attr('max', today);
+        $(".minDateToday").attr('min', today);
+
+        $('#inputCPF').mask('000.000.000-00', {reverse: true});
+        $('#inputRG').mask('0.000.000-0', {reverse: true});
+        $('#inputTelefone').mask('(00) 0000-0000');
+        $('#telefoneRef').mask('(00) 0 0000-0000');
+        $('#inputCelular').mask('(00) 0 0000-0000');
+        $('#inputCelular2').mask('(00) 0 0000-0000');       
+        $('#inputRenda').mask('000.000.000.000.000,00', {reverse: true});
+        
+        $("form").submit(function() {
+          var t = JSON.stringify(testreferencia);
+          $("#inputReferencias").val(t);
+         });
+
+         $("#btnAddReferencia").click(function(){
+            //var referencias = $("#inputReferencias").val(); 
+            var nome = $("#nomeRef").val();
+            var telefone = $("#telefoneRef").val();
+            var tipo = $("#tipoRef").val();
+            var grau = $("#grauParentesco").val();             
+
+            if(nome == undefined || nome == "" || telefone == undefined || telefone == "" || tipo == undefined || tipo == "" || tipo == null){
+              $.notify({
+                    icon: "nc-icon nc-alert-circle-i",
+                    message: "Preencha os campos NOME, TELEFONE e TIPO"
+                },
+                {
+                    type: 'warning',
+                    timer: 4000,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    }
+                });
+            }
+            else{
+              var objectId = new Date().getUTCMilliseconds();
+              var t = {Id: objectId, Nome: nome, Telefone: telefone, Tipo: tipo, Grau: grau};
+              testreferencia.push(t);
+
+              $("#nomeRef").val("");
+              $("#telefoneRef").val("");
+              $("#tipoRef").val("Selecione");
+              $("#grauParentesco").val("");
+            
+              $("#allreferences").append("<tr><td>" + nome + "</td><td>" + telefone + "</td><td>" + tipo + "</td><td>" + grau + "</td><td><i id='" + objectId + "' class='nc-icon nc-simple-remove removeRef'/></td></tr>"); 
+           
+              $.notify({
+                    icon: "nc-icon nc-check-2",
+                    message: "Referência Adicionada a Lista de Referências!"
+                },
+                {
+                    type: 'success',
+                    timer: 4000,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    }
+                });
+            }
+         });
+
+         $(".removeRef").click(function(){              
+              var id = this.id;
+              var indexArr = testreferencia.findIndex(function(o){
+                return o.Id === Number(id);
+              })
+              if (indexArr !== -1) testreferencia.splice(indexArr, 1);
+              var index = this.parentNode.parentNode.rowIndex;
+              document.getElementById('allreferences').deleteRow(index -1);
+            });  
+
+         $(".justNumber").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+             // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+             // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }       
+    });
+        function loadReferencias(){
+          var table = document.getElementById("allreferences");
+          for (var i = 0, row; row = table.rows[i]; i++) {
+            var nome= "";
+            var telefone = "";
+            var tipo = "";
+            var grau = "";
+            var objectId = "";
+            for (var j = 0, col; col = row.cells[j]; j++) {             
+              
+              if(col.className == "nome"){
+                nome = col.innerText;                
+              }//btnDelete
+              if(col.className == "telefone"){
+                telefone = col.innerText;
+              }
+              if(col.className == "tipo"){
+                tipo = col.innerText;
+              }
+              if(col.className == "grau"){
+                grau = col.innerText;
+              } 
+              if(col.className == "btnDelete"){
+                objectId = Number(col.firstElementChild.id);
+              }             
+            }            
+            var t = {Id: objectId, Nome: nome, Telefone: telefone, Tipo: tipo, Grau: grau};
+            testreferencia.push(t);
+          }
+        }
+        
+        function setSelectedIndex(s, valsearch){
+          for (i = 0; i< s.options.length; i++){
+            if (s.options[i].value == valsearch){
+              s.options[i].selected = true;
+              break;
+            }
+          }
+          return;
+        }
+
+      });
+
+
+    </script>
+</body>
+
+</html>

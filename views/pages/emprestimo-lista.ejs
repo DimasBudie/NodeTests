@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <%- include('../partials/sidebar') %>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <%- include('../partials/topbar', {title : 'Empréstimos'}) %>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"></h4>
+                <div class="wizard-navigation">
+                  <ul class="nav nav-pills">
+                    <li class="nav-item text-center" style="width: 50%;">
+                      <a class="nav-link active show" href="#about" data-toggle="tab" role="tab" aria-controls="about" aria-selected="false">
+                        <i class="nc-icon nc-single-copy-04"></i> Ativos
+                      </a>
+                    </li>
+                    <li class="nav-item text-center" style="width: 50%;">
+                      <a class="nav-link" href="#account" data-toggle="tab" role="tab" aria-controls="account" aria-selected="true">
+                        <i class="nc-icon nc-single-copy-04"></i> Finalizados
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane active show" id="about">
+                    <h5 class="info-text">Listagem de empréstimos ativos</h5>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <table class="table">
+                          <thead class=" text-primary">                            
+                            <th>Nome</th>
+                            <th>Contrato(R$)</th>
+                            <th>Taxa(a.a)</th>
+                            <th>Parcela</th>
+                            <th>Saldo</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <a href="/emprestimo-detalhe/1">Filipe Breno Viana</a>
+                              </td>
+                              <td>R$20.000,00</td>
+                              <td>5%</td>
+                              <td>2/24</td>
+                              <td>R$18.700,00</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Aldir Brandão</a>
+                              </td>
+                              <td>R$20.000,00</td>
+                              <td>5%</td>
+                              <td>2/24</td>
+                              <td>R$18.700,00</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Marlos Ferreira</a>
+                              </td>
+                              <td>R$20.000,00</td>
+                              <td>5%</td>
+                              <td>2/24</td>
+                              <td>R$18.700,00</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Marcela Marinho</a>
+                              </td>
+                              <td>R$20.000,00</td>
+                              <td>5%</td>
+                              <td>2/24</td>
+                              <td>R$18.700,00</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Marcio Lourenco</a>
+                              </td>
+                              <td>R$20.000,00</td>
+                              <td>5%</td>
+                              <td>2/24</td>
+                              <td>R$18.700,00</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Filipe Breno Viana</a>
+                              </td>
+                              <td>R$20.000,00</td>
+                              <td>5%</td>
+                              <td>2/24</td>
+                              <td>R$18.700,00</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="account">
+                    <h5 class="info-text">Listagem de empréstimos finalizados</h5>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <table class="table">
+                          <thead class=" text-primary">
+                            <th>Nome</th>
+                            <th>Contrato(R$)</th>
+                            <th>Taxa(a.a)</th>
+                            <th>Parcela</th>
+                            <th>Saldo</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Maria Imaculada</a>
+                              </td>
+                              <td>R$15.000,00</td>
+                              <td>5%</td>
+                              <td>24/24</td>
+                              <td>R$0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Renato da Silva</a>
+                              </td>
+                              <td>R$15.000,00</td>
+                              <td>5%</td>
+                              <td>24/24</td>
+                              <td>R$0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Carlos Alberto Jayme</a>
+                              </td>
+                              <td>R$15.000,00</td>
+                              <td>5%</td>
+                              <td>24/24</td>
+                              <td>R$0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Rafael dos Santos</a>
+                              </td>
+                              <td>R$15.000,00</td>
+                              <td>5%</td>
+                              <td>24/24</td>
+                              <td>R$0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Thiago Coelho</a>
+                              </td>
+                              <td>R$15.000,00</td>
+                              <td>5%</td>
+                              <td>24/24</td>
+                              <td>R$0</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  <a href="/emprestimo-detalhe/1">Filipe Breno Viana</a>
+                              </td>
+                              <td>R$15.000,00</td>
+                              <td>5%</td>
+                              <td>24/24</td>
+                              <td>R$0</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <%- include('../partials/footer') %>
+      </footer>
+    </div>
+    <%- include('../partials/scripts') %>
+      <script>
+        $(document).ready(function () {
+          $('.table').DataTable();
+        });
+      </script>
+</body>
+
+</html>

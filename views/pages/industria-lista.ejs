@@ -1,0 +1,88 @@
+
+<!DOCTYPE htm>
+<html lang="pt-br">
+	<head>
+		<%- include('../partials/head') %>
+	</head>
+	<body class="">
+		<div class="wrapper">
+			<div class="sidebar" data-color="white" data-active-color="danger">
+      			<%- include('../partials/sidebar') %>
+    		</div>
+
+    		<div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <%- include('../partials/topbar', {title : 'Indústrias'}) %>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"></h4>                
+                <a class="btn btn-primary" href="/industria-cadastro" role="button">Nova Indústria</a>
+              </div>
+              <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">              
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>Nome Fantasia</th>
+                      <th>Razão Social</th>
+                      <th>CNPJ/UF</th>
+                      <th>Telefone</th>
+                       <th>Cidade</th>
+                       <th></th>
+                       <th></th>
+                    </thead>
+                    <tbody>
+                       <% data.forEach(item => { %>
+                      <tr>
+                        <td>
+                          <a href="/cliente-detalhe/<%= item._id %>"><%= item.nomeFantasia %></a>
+                        </td>
+                         <td>
+                          <%= item.razaoSocial %>
+                        </td>
+                        <td>
+                          <%= item.cnpj %>
+                        </td>
+                        <td>
+                          <%= item.telefone %>
+                        </td>     
+                        <td>
+                          <%= item.cidade %>
+                        </td>                     
+                        <td>
+                          <a href="/cliente-detalhe/<%= item._id %>" class="btn btn-primary">Visualizar</a>
+                        </td>
+                        <td>
+                          <a href="/cliente-deletar/<%= item._id %>" class="btn btn-primary">Deletar</a>
+                        </td>
+                      </tr>
+                      <% }); %>                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <%- include('../partials/footer') %>
+      </footer>
+    </div>
+
+		</div>
+		<%- include('../partials/scripts') %>
+      <script>
+        $(document).ready(function () {
+          $('.table').DataTable();
+        });
+      </script>
+	</body>
+</html>

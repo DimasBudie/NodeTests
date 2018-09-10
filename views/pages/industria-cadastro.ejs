@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+		<%- include('../partials/head') %>
+	</head>
+	<body class="">
+		<div class="wrapper">
+			<div class="sidebar" data-color="white" data-active-color="danger">
+      			<%- include('../partials/sidebar') %>
+    		</div>
+    		<div class="main-panel">
+                <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+                    <%- include('../partials/topbar', {title : 'Cadastro de Indústria'}) %>
+                </nav>
+
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-user">
+                                <div class="card-header">
+                                    <h5 class="card-title">Nova Indústria</h5>
+                                </div>
+                                <div class="card-body">
+                                    <form  method="POST" action="/industria-criacao">
+                                        <div class="row">
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                <label>Razão Social</label>
+                                                <input type="text" name="razaoSocial" class="form-control" placeholder="" value="<%= data.razaoSocial %>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 pl-1">
+                                                <div class="form-group">
+                                                <label>Nome Fantasia</label>
+                                                <input type="text" name="nomeFantasia" class="form-control" placeholder="" value="<%= data.nomeFantasia %>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                <label>Site</label>
+                                                <input type="text" name="site" class="form-control" placeholder="www.site.com" value="<%= data.site %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-1">
+                                                <div class="form-group">
+                                                <label>CNPJ</label>
+                                                <input type="text" name="cnpj" id="inputCNPJ" class="form-control" placeholder="" value="<%= data.cnpj %>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                <label>Inscrição Estadual/Municipal</label>
+                                                <input type="text" name="inscricaoEstadual" class="form-control" placeholder="" value="<%= data.inscricaoEstadual %>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 pr-1">
+                                                <div class="form-group">
+                                                <label>Endereço</label>
+                                                <input type="text" name="endereco" class="form-control" placeholder="" value="<%= data.endereco %>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 px-1">
+                                                <div class="form-group">
+                                                <label>Número</label>
+                                                <input type="text" name="numero" class="form-control" placeholder="" value="<%= data.numero %>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                <label>Complemento</label>
+                                                <input type="text" name="complemento" class="form-control" placeholder="" value="<%= data.complemento %>" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                <label>CEP</label>
+                                                <input type="text" name="cep" class="form-control" placeholder="" value="<%= data.cep %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 px-1">
+                                                <div class="form-group">
+                                                <label>Cidade</label>
+                                                <input type="text" name="cidade" class="form-control" placeholder="" value="<%= data.cidade %>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                <label>Estado</label>
+                                                <input type="hidden" value="<%= data.estado %>" id="estadohidden" />
+                                                <select class="form-control" name="estado" id="selectEstado" required>
+                                                        <option value="">Selecione</option>
+                                                        <option value="AC">Acre</option>
+                                                        <option value="AL">Alagoas</option>
+                                                        <option value="AP">Amapá</option>
+                                                        <option value="AM">Amazonas</option>
+                                                        <option value="BA">Bahia</option>
+                                                        <option value="CE">Ceará</option>
+                                                        <option value="DF">Distrito Federal</option>
+                                                        <option value="ES">Espírito Santo</option>
+                                                        <option value="GO">Goiás</option>
+                                                        <option value="MA">Maranhão</option>
+                                                        <option value="MT">Mato Grosso</option>
+                                                        <option value="MS">Mato Grosso do Sul</option>
+                                                        <option value="MG">Minas Gerais</option>
+                                                        <option value="PA">Pará</option>
+                                                        <option value="PB">Paraíba</option>
+                                                        <option value="PR">Paraná</option>
+                                                        <option value="PE">Pernambuco</option>
+                                                        <option value="PI">Piauí</option>
+                                                        <option value="RJ">Rio de Janeiro</option>
+                                                        <option value="RN">Rio Grande do Norte</option>
+                                                        <option value="RS">Rio Grande do Sul</option>
+                                                        <option value="RO">Rondônia</option>
+                                                        <option value="RR">Roraima</option>
+                                                        <option value="SC">Santa Catarina</option>
+                                                        <option value="SP">São Paulo</option>
+                                                        <option value="SE">Sergipe</option>
+                                                        <option value="TO">Tocantins</option>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4 pr-1">
+                                                <div class="form-group">
+                                                <label>Telefone</label>
+                                                <input type="text" name="telefone" class="form-control" placeholder="" value="<%= data.telefone %>">
+                                                </div>
+                                            </div>                                           
+                                        </div>
+                                        <!-- Contatos -->                                        
+                                        <div class="card-body" style="padding: 0px;">
+                                            <h5 class="card-title">Contatos</h5>
+                                            <div class="col-md-12 pt-2" style="border: 1px solid #dbbbbb; border-radius: 4px;">      
+                                                <div class="row">                                              
+                                                    <div class="col-md-4 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Nome</label>
+                                                            <input type="text" id="nomeResp" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>   
+                                                    <div class="col-md-3 px-1">
+                                                        <div class="form-group">
+                                                            <label>Telefone</label>
+                                                            <input type="text" id="telefoneResp" class="form-control" placeholder="">
+                                                        </div>
+                                                    </div>   
+                                                    <div class="col-md-3 px-1">
+                                                        <div class="form-group">
+                                                            <label>Setor</label>
+                                                            <select class="form-control" id="setorContato">
+                                                                <option value="">Selecione</option>
+                                                                <option value="Comercial">Comercial</option>
+                                                                <option value="Logistica">Logística</option>
+                                                                <option value="Financeiro">Financeiro</option>
+                                                                <option value="Contrato">Contrato</option>
+                                                                <option value="Ocorrencias">Ocorrências</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>   
+                                                    <div class="col-md-2 pl-1 pt-3">
+                                                        <input type="button" id="btnAddResponsavel" class="btn btn-info" value="Adicionar" />                                                            
+                                                    </div>
+                                                </div>
+                                            </div>      
+                                                                                            
+                                            
+                                            <div class="row">
+                                                <div class="col-md-12 pr-3 pl-3">
+                                                    <input type="hidden" name="contatos" id="inputContatos" />
+                                                    <table class="table">
+                                                        <thead id="contatos" class=" text-primary">
+                                                        <th>Nome</th>
+                                                        <th>Telefone</th>
+                                                        <th>Setor</th>                                                    
+                                                        </thead>
+                                                        <tbody id="allContacts">
+                                                            <%
+                                                            if(data.referencias != undefined){
+                                                            var y = JSON.parse(data.contatos);
+                                                            
+                                                            y.forEach(item => { %>
+                                                                <tr>
+                                                                    <td class="nome">
+                                                                        <%= item.Nome %>
+                                                                    </td>
+                                                                    <td class="telefone">
+                                                                    <%= item.Telefone %>
+                                                                    </td>
+                                                                    <td class="tipo">
+                                                                        <%= item.Setor %>
+                                                                    </td>                                                                    
+                                                                    <td class="btnDelete">
+                                                                        <i id="<%= item.Id %>" class="nc-icon nc-simple-remove removeContato"/>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                            <% });} %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>  
+                                        </div>    
+                                        <div class="row">
+                                            <div class="update ml-auto mr-auto">
+                                                <button type="submit" id="btnSubmit" class="btn btn-primary">Salvar</button>
+                                            </div>          
+                                        </div>                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer footer-black  footer-white ">
+                    <%- include('../partials/footer') %>
+                </footer>
+            </div>
+        </div>   
+        <%- include('../partials/scripts') %>
+    <script>
+      $(document).ready(function () {
+        var listaContatos = [];
+
+        if($("#estadohidden").val() != null){
+            setSelectedIndex(document.getElementById("selectEstado"),$("#estadohidden").val()); 
+        }
+
+        $('#inputCNPJ').mask('99.999.999/9999-99', {reverse: true});                
+        $('#telefoneResp').mask('(00) 0000-0000');
+        /*$('#inputCelular').mask('(00) 0 0000-0000');
+        $('#inputCelular2').mask('(00) 0 0000-0000');*/
+
+         $("form").submit(function() {
+          var t = JSON.stringify(listaContatos);
+          $("#inputContatos").val(t);
+         });
+
+        $("#btnAddResponsavel").click(function (){            
+            var nome = $("#nomeResp").val();
+            var telefone = $("#telefoneResp").val();
+            var setor = $("#setorContato").val();
+
+            if(nome == undefined || nome == "" || telefone == undefined || telefone == "" || setor == undefined || setor == ""){
+                $.notify({
+                    icon: "nc-icon nc-alert-circle-i",
+                    message: "Preencha os campos NOME, TELEFONE e SETOR"
+                },
+                {
+                    type: 'warning',
+                    timer: 2000,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    }
+                });
+            } else{
+                var objectId = new Date().getUTCMilliseconds();
+                var t = {Id: objectId, Nome: nome, Telefone: telefone, Setor: setor};
+                listaContatos.push(t);               
+                
+
+                $("#nomeResp").val("");
+                $("#telefoneResp").val("");
+                $("#setorContato").val("Selecione");
+
+                $("#allContacts").append("<tr><td>" + nome + "</td><td>" + telefone + "</td><td>" + setor + "</td><td><i id='" + objectId + "' class='nc-icon nc-simple-remove removeContato' onclick='RemoveContato'/></td></tr>"); 
+                
+                $.notify({
+                    icon: "nc-icon nc-check-2",
+                    message: "Contato Adicionado a Lista de Contatos!"
+                },
+                {
+                    type: 'success',
+                    timer: 2000,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    }
+                });
+            }            
+            });
+
+            $(".removeContato").click(function(){
+                var id = this.id;
+                var indexArr = listaContatos.findIndex(function(o){
+                  return o.Id === Number(id);
+                })
+                if (indexArr !== -1) listaContatos.splice(indexArr, 1);
+                var index = this.parentNode.parentNode.rowIndex;
+                document.getElementById('allContacts').deleteRow(index -1);
+            }); 
+
+            $(".justNumber").keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+                    // Allow: home, end, left, right, down, up
+                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        // let it happen, don't do anything
+                        return;
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }       
+            });
+
+            function loadReferencias(){
+          var table = document.getElementById("allContacts");
+          for (var i = 0, row; row = table.rows[i]; i++) {
+            var nome= "";
+            var telefone = "";
+            var setor = "";            
+            var objectId = "";
+            for (var j = 0, col; col = row.cells[j]; j++) {             
+              
+              if(col.className == "nome"){
+                nome = col.innerText;                
+              }//btnDelete
+              if(col.className == "telefone"){
+                telefone = col.innerText;
+              }
+              if(col.className == "setor"){
+                setor = col.innerText;
+              }              
+              if(col.className == "btnDelete"){
+                objectId = Number(col.firstElementChild.id);
+              }             
+            }            
+            var t = {Id: objectId, Nome: nome, Telefone: telefone, Setor: setor};
+            listaContatos.push(t);
+          }
+        }
+        
+        function setSelectedIndex(s, valsearch){
+          for (i = 0; i< s.options.length; i++){
+            if (s.options[i].value == valsearch){
+              s.options[i].selected = true;
+              break;
+            }
+          }
+          return;
+        }
+        function RemoveContato(){
+            alert("Aqui");
+        }
+
+        });
+
+        
+
+        
+      </script> 
+    </body>
+</html>

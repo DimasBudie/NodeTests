@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body style="background-color: #24B4A4; margin-top:50px; overflow: hidden;">
+  <div class="wrapper wrapper-full-page ">
+    <div class="full-page section-image" filter-color="black" data-image="../assets/img/jan-sendereks.jpg">
+      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+      <div class="content">
+        <div class="container">
+          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+            <form class="form" method="POST" action="/login">
+              <div class="card card-login">
+                <div class="card-header ">
+                  <div class="card-header ">
+                    <div class="logo">
+                      <a href="#" class="simple-text text-center logo-mini">
+                        <div class="logo-image-small">
+                          <img src="../assets/img/tempLogo.png">
+                        </div>
+                      </a>
+                    </div>
+                    <h3 class="header text-center" style="color: #807C77;">Frete Legal</h3>
+                  </div>
+                </div>
+                <div class="card-body ">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-single-02"></i>
+                      </span>
+                    </div>
+                    <input type="text" name="username" class="form-control" required placeholder="Usuário" value="admin">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-key-25"></i>
+                      </span>
+                    </div>
+                    <input type="password" name="password" placeholder="Senha" required class="form-control" value="admin">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="" checked="">
+                        <span class="form-check-sign"></span>
+                        Lembrar minhas credenciais
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                  <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+                  <% if(isAuthValid == false){ %>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                      <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="nc-icon nc-simple-remove"></i>
+                      </button>
+                      <span>Usuário ou senha inválidos</span>
+                    </div>
+                    <% } %>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+      </footer>
+      <div class="full-page-background" style="background-image: url(../assets/img/jan-sendereks.jpg) "></div>
+    </div>
+  </div>
+  <%- include('../partials/scripts') %>
+  <script>
+  </script>
+</body>
+
+</html>
