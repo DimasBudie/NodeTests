@@ -1,0 +1,25 @@
+{
+    "name": "node-restapi",
+    "version": "0.0.0",
+    "scripts": {
+        "start": "node startup",
+        "test": "tape ./test/*.test.js",
+        "doc": "apidoc -i controller/ -o apidoc/"
+    },
+    "dependencies": {
+        "apidoc": "^0.17.6",
+        "body-parser": "^1.18.3",
+        "ejs": "^2.6.1",
+        "express": "^4.16.3",
+        "express-session": "^1.15.6",
+        "jquery-mask-plugin": "^1.14.15",
+        "jwt-simple": "^0.5.1",
+        "lokijs": "^1.5.5",
+        "mathjs": "^5.0.4",
+        "moment": "^2.22.2",
+        "mongoose": "^5.2.12",
+        "morgan": "^1.9.0",
+        "tape": "^4.9.1",
+        "uuid": "^3.2.1"
+    }
+}
