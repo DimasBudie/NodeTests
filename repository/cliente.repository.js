@@ -4,9 +4,9 @@ module.exports = {
 
 	create: (cliente) => {
         return new Promise(res => {            
-            let db = new Cliente(cliente);            
-            db.id = db._id;            
-            res(db.save());
+            let db = new Cliente(cliente);               
+            db.id = db._id;
+            res(db.save());            
         });
     },
 

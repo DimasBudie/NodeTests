@@ -19,7 +19,7 @@ let dataSchema = new Schema({
   celular2: { type: String, default: '' },
   operadora: { type: String, default: '' },
   email: { type: String, default: '' },    
-  registroCNH: { type: String, default: '' },
+  registroCNH: { type: String, default: '' }, 
   validade: {type: String, default: ''},
   categoria: { type: String, default: '' },    
   primeiraHabilitacao: {type: String, default: ''},

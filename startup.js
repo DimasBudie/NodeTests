@@ -87,8 +87,8 @@ function configApi(app) {
 function configDatabase() {
   console.log('Tentando conectar na base de dados' );
   
-
-  mongoose.connect('mongodb://localhost:27017/nodetest1', { useNewUrlParser: true });
+ 
+  mongoose.connect('mongodb://localhost:27017/bancoFrete', { useNewUrlParser: true });
   //mongoose.connect(appconfig.database);
   mongoose.connection.on('error', console.error.bind(console, 'Database connection error:'));
   mongoose.connection.once('open', function () {

@@ -28,10 +28,9 @@ let industriaController = {
 
 	 create: async (req, res) => {
         let input = req.body;
-         try {         	
-			 console.log(input);
+         try {  
             data.config = await service.create(input);                     
-           res.render('pages/industria-lista', {
+            res.render('pages/industria-lista', {
             data: await service.getIndustria(),
             msg: null
         });
