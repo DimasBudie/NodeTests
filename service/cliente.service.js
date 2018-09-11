@@ -2,12 +2,12 @@ const repo = require('../repository/cliente.repository');
 
 module.exports = {
 	updateCliente: async (input) => {       
-        return await repo.update(input);    
-    },
-
-    create: async (input) => {
-        return await repo.create(input);
-    },
+        if (!input._id) {            
+            return await repo.create(input);
+        } else {
+            return await repo.update(input);
+        }    
+    },    
 
     getCliente: async () => {
     	let cliente = await repo.get();        

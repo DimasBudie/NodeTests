@@ -54,7 +54,7 @@ let clienteController = {
     create: async (req, res) => {
         let input = req.body;
          try {
-            data.config = await clienteService.create(input);               
+            data.config = await clienteService.updateCliente(input);               
             res.render('pages/cliente-lista', {
             data: await clienteService.getCliente(),
             msg: null

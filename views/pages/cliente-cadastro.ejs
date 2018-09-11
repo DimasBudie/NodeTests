@@ -27,7 +27,9 @@
                 <form  method="POST" action="/cliente-criacao">
                   <div class="row">
                     <div class="col-md-5 pr-1">
+                      <%if(data._id != '' && data._id != null && data._id != undefined){%>
                       <input type="hidden" name="_id" value="<%= data._id%>"/>
+                      <%}%>
                       <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="nome" class="form-control" value="<%= data.nome %>" placeholder="Nome Completo" required>
