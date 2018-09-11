@@ -1,0 +1,1 @@
+const appconfig = require('./appconfig');
