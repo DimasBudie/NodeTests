@@ -5,7 +5,7 @@ module.exports = {
 	create: (cliente) => {
         return new Promise(res => {            
             let db = new Cliente(cliente);               
-            db.id = db._id;
+            db.id = db._id;            
             res(db.save());            
         });
     },
@@ -19,10 +19,10 @@ module.exports = {
         });
     },
 
-    get: () => {
+    get: (req) => {
         return new Promise(res => {
             Cliente
-                .find((err, doc) => {                    
+                .find({usuarioId: req.session.usuarioId}, (err, doc) => {                    
                     res(doc);
                 });
         });

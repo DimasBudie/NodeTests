@@ -35,20 +35,29 @@
           </p>
         </a>
       </li> -->
-      <li class="nav-item btn-rotate dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-          <i class="nc-icon nc-bell-55"></i>
-          <p>
-            <span class="d-lg-none d-md-block">Some Actions</span>
-          </p>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/notificacoes">Notificações</a>
-          <a class="dropdown-item" href="#">Recebimentos</a>
-          <a class="dropdown-item" href="#">Alertas</a>
-        </div>
-      </li> 
+      <li class="nav-item dropdown d-md-down-none">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="nc-icon nc-bell-55"></i>
+            <span class="badge badge-pill badge-danger">5</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
+            <div class="dropdown-header text-center">
+              <strong>You have 5 notifications</strong>
+            </div>
+            <a class="dropdown-item" href="#">
+              <i class="icon-user-follow text-success"></i> New user registered</a>
+            <a class="dropdown-item" href="#">
+              <i class="icon-user-unfollow text-danger"></i> User deleted</a>
+            <a class="dropdown-item" href="#">
+              <i class="icon-chart text-info"></i> Sales report is ready</a>
+            <a class="dropdown-item" href="#">
+              <i class="icon-basket-loaded text-primary"></i> New client</a>
+            <a class="dropdown-item" href="#">
+              <i class="icon-speedometer text-warning"></i> Server overloaded</a>
+          </div>       
+        </li>
+
+     
       <li class="nav-item">
         <a class="nav-link btn-rotate" href="/configuracao">
           <i class="nc-icon nc-settings-gear-65"></i>

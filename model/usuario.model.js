@@ -5,6 +5,7 @@ let dataSchema = new Schema({
   email: { type: String, default: '' },
   usuario: { type: String, default: '' },
   senha: { type: String, default: '' },
+  tipoConta: { type: String, default: '' },
 }, { collection: 'Usuario' });
 
 module.exports = mongoose.model('Usuario', dataSchema);

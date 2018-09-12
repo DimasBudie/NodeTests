@@ -17,6 +17,9 @@ module.exports = {
         if (data != null) {
             req.session.user = data.usuario;
             req.session.admin = true;
+            req.session.tipoConta = data.tipoConta;
+            req.session.usuarioId = data._id;
+            res.locals.tipoConta = req.session.tipoConta;
             res.render('pages/home');
         } else {
             res.render('pages/login', { isAuthValid: false });

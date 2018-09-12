@@ -9,8 +9,8 @@ module.exports = {
         }    
     },    
 
-    getCliente: async () => {
-    	let cliente = await repo.get();        
+    getCliente: async (req) => {
+    	let cliente = await repo.get(req);        
         return cliente;
     },	
 

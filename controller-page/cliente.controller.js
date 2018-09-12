@@ -9,8 +9,11 @@ let clienteController = {
      */
     index: async (req, res) => {
         try {
+            if(req.session.tipoConta != "industria"){
+                res.render('pages/DeniedAccess');
+            }
             res.render('pages/cliente-lista', {
-            data: await clienteService.getCliente(),
+            data: await clienteService.getCliente(req),
             msg: null
         });
         } catch (error) {
@@ -23,6 +26,9 @@ let clienteController = {
     },
 
     cadastro: (req, res) => {
+        if(req.session.tipoConta != "industria"){
+            res.render('pages/DeniedAccess');
+        }
         res.render('pages/cliente-cadastro', {
             data: data,
             msg: null
@@ -34,6 +40,9 @@ let clienteController = {
      * pagina de detalhes.
      */
     detalhe: async (req, res) => {
+        if(req.session.tipoConta != "industria"){
+            res.render('pages/DeniedAccess');
+        }
         var id = req.params.id;
         var clienteDetalhes = await clienteService.getById(id);        
         res.render('pages/cliente-cadastro', {
@@ -43,20 +52,28 @@ let clienteController = {
     },
 
     deletar : async (req, res) => {
+        if(req.session.tipoConta != "industria"){
+            res.render('pages/DeniedAccess');
+        }
         var id = req.params.id;
         var clienteDetalhes = await clienteService.delete(id); 
         res.render('pages/cliente-lista', {
-            data: await clienteService.getCliente(),
+            data: await clienteService.getCliente(req),
             msg: null
         });
     },
 
     create: async (req, res) => {
+        if(req.session.tipoConta != "industria"){
+            res.render('pages/DeniedAccess');
+        }
         let input = req.body;
          try {
+             input.usuarioId = req.session.usuarioId;
+             console.log(input);
             data.config = await clienteService.updateCliente(input);               
             res.render('pages/cliente-lista', {
-            data: await clienteService.getCliente(),
+            data: await clienteService.getCliente(req),
             msg: null
         });
         } catch (error) {

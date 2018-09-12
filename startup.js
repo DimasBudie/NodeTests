@@ -12,6 +12,12 @@ configApi(app);
 configDatabase();
 startServer(app);
 
+app.use(function(req, res, next) {
+  console.log('Passou Aqui: ' + req.session.user);
+  res.locals.user = req.session.user;
+  next();
+});
+
 /**
  * Config page routes and dependencies
  * @param {*} app 
@@ -85,33 +91,12 @@ function configApi(app) {
  * Database configuration and connection.
  */
 function configDatabase() {
-  console.log('Tentando conectar na base de dados' );
-  
- 
   mongoose.connect('mongodb://localhost:27017/bancoFrete', { useNewUrlParser: true });
   //mongoose.connect(appconfig.database);
   mongoose.connection.on('error', console.error.bind(console, 'Database connection error:'));
   mongoose.connection.once('open', function () {
     console.log('Database connected');
   });
-
-  //--------------------------------------
-  // var moment = require('moment');
-  // var db = require('./repository/investidor.repository');
-  // var item = {
-  //   nome: 'Handerson Marinho',
-  //   taxa: '2.0',
-  //   cpf: '040.768.809.54',   
-  //   saldo : '1.000,00',
-  //   operacoes: [{
-  //     data : moment().format('DD/MM/YYYY'),
-  //     valor : '1.000,00',
-  //     tipo : 'CRED'
-  //   }]
-  // };
-  // db.create(item);
-  // console.log(db.getAll());
-  //--------------------------------------
 }
 
 /**

@@ -28,6 +28,7 @@ let dataSchema = new Schema({
   detran: { type: String, default: '' },
   pontuacaoCNH: { type: Number, default: '' },
   referencias : Schema.Types.Mixed,
+  usuarioId: {type: mongoose.Schema.Types.ObjectId},
   criadoEm: {type: Date, default: new Date()},
 }, { collection: 'Cliente' });
 
