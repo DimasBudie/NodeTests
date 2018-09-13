@@ -1,47 +1,88 @@
 const service = require('../service/usuario.service');
+const config = require('../appconfig');
+const data = { usuario: null, config: null };
 
-module.exports = {
-
-    index: (req, res) => {
-        res.render('pages/login', { isAuthValid: true });
+let usuarioController = {
+    index: async (req, res) => {
+        try {
+            res.locals.tipoConta = req.session.tipoConta;
+            if(req.session.tipoConta != "admin"){
+                res.render('pages/DeniedAccess');
+            }        
+            res.render('pages/usuario-lista', {
+            data: await service.getUsuario(),
+            msg: null
+        });
+        } catch (error) {
+            console.log('Deu Zica: ' + error);
+            res.render('pages/usuario-lista', {
+                data: data,
+                msg: error
+            });
+        }
     },
 
-    login: async (req, res) => {
-        let input = req.body;
-        if (!input.username || !input.password) {
-            res.render('pages/login', { isAuthValid: false });
+    cadastro: (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
         }
-
-        var data = await service.getByLogin(input.username, input.password);
-        
-        if (data != null) {
-            req.session.user = data.usuario;
-            req.session.admin = true;
-            req.session.tipoConta = data.tipoConta;
-            req.session.usuarioId = data._id;
-            res.locals.tipoConta = req.session.tipoConta;
-            res.render('pages/home');
-        } else {
-            res.render('pages/login', { isAuthValid: false });
-        }
+        res.render('pages/usuario-cadastro', {
+            data: data,
+            msg: null
+        });  
     },
 
     /**
-     * Middleware de autenticação usado para validar os requests
-     * na area restrita do sistema, todo request que utilizar esse
-     * método recebe uma validação de sessão antes de prosseguir.
+     * Pesquisa cliente com base no id informado e retorna
+     * pagina de detalhes.
      */
-    validateAuth: (req, res, next) => {
-        //if (req.session && req.session.user === "admin" && req.session.admin)
-        if (req.session && req.session.admin)
-            return next();
-        else
-            res.render('pages/login', { isAuthValid: true });
+    detalhe: async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
+        }
+        var id = req.params.id;
+        var usuarioDetalhes = await service.getById(id);        
+        res.render('pages/usuario-cadastro', {
+            data: usuarioDetalhes,
+            msg: null
+        });        
     },
 
-    logout: (req, res) => {
-        req.session.destroy();
-        res.render('pages/login', { isAuthValid: true });
+    deletar : async (req, res) => {        
+        res.locals.tipoConta = req.session.tipoConta;
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
+        }
+        var id = req.params.id;
+        await service.delete(id); 
+        res.render('pages/usuario-lista', {
+            data: await service.getUsuario(),
+            msg: null
+        });
     },
 
-}; 
+    create: async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
+        }
+        let input = req.body;
+         try {            
+            data.config = await service.updateUsuario(input);               
+            res.render('pages/usuario-lista', {
+            data: await service.getUsuario(),
+            msg: null
+        });
+        } catch (error) {
+            console.log('Deu Zica: ' + error);
+             res.render('pages/usuario-lista', {
+                data: data,
+                msg: error
+            });
+        }
+    },
+}
+
+module.exports = usuarioController;

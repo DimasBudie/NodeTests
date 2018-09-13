@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <%- include('../partials/sidebar') %>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <%- include('../partials/topbar', {title : 'Usuários'}) %>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"></h4>                
+                <a class="btn btn-primary" href="/usuario-cadastro" role="button">Novo Usuário</a>
+              </div>
+              <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">              
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>Nome</th>
+                      <th>Login</th>
+                      <th>E-mail</th>
+                      <th>Privilégio</th>       
+                      <th>Status</th>                       
+                       <th></th>
+                       <th></th>
+                    </thead>
+                    <tbody>
+                       <% data.forEach(item => { %>
+                      <tr>
+                        <td>
+                          <a href="/usuario-detalhe/<%= item._id %>"><%= item.nome %></a>
+                        </td>
+                         <td>
+                          <%= item.usuario %>
+                        </td>
+                        <td>
+                          <%= item.email %>
+                        </td>
+                        <td>
+                          <%= item.tipoConta %>
+                        </td>     
+                        <td>   
+                        <%if(item.ativo){%>
+                          Ativo
+                          <%} else{%>
+                            Inativo
+                            <%}%>
+                        </td>                                     
+                        <td>
+                          <a href="/usuario-detalhe/<%= item._id %>" class="nc-icon nc-single-copy-04"></a>
+                        </td>
+                        <td>
+                          <a href="/usuario-deletar/<%= item._id %>" class="nc-icon nc-simple-remove"></a>
+                        </td>
+                      </tr>
+                      <% }); %>                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <%- include('../partials/footer') %>
+      </footer>
+    </div>
+  </div>
+   <%- include('../partials/scripts') %>
+      <script>
+        $(document).ready(function () {
+          $('.table').DataTable();
+        });
+      </script>
+
+</body>
+
+</html>

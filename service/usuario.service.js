@@ -14,6 +14,14 @@ module.exports = {
         return await repo.getByLogin(username, password);        
     },
 
+    getById: async (id) => {
+        return await repo.getById(id);        
+    },
+
+    delete: async (id) => {
+        return await repo.delete(id);
+    },
+
     getByUsername: async (usuario) => {
         if (!usuario) {
             throw "username is mandatory";
@@ -21,6 +29,23 @@ module.exports = {
 
         let user = await repo.getByUsername(usuario);
         return user.usuario == usuario ? user : null;
+    },
+
+    getUsuario: async () => {
+        return await repo.get();                
+    },
+
+    updateUsuario: async (usuario) => {
+        console.log(usuario.ativo);
+        if(usuario.ativo == "on"){
+            usuario.ativo = true;
+        }
+        else{usuario.ativo = false;}
+        if(!usuario.id){
+            return await repo.create(usuario);
+        } else{
+            return await repo.update(usuario);    
+        }
     },
 
     updatePassword: async (input) => {        

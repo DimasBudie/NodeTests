@@ -8,6 +8,7 @@ let clienteController = {
      * Renderiza a pagina inicial.
      */
     index: async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
         try {
             if(req.session.tipoConta != "industria"){
                 res.render('pages/DeniedAccess');
@@ -26,6 +27,7 @@ let clienteController = {
     },
 
     cadastro: (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }
@@ -40,6 +42,7 @@ let clienteController = {
      * pagina de detalhes.
      */
     detalhe: async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }
@@ -52,6 +55,7 @@ let clienteController = {
     },
 
     deletar : async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }
@@ -64,6 +68,7 @@ let clienteController = {
     },
 
     create: async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }

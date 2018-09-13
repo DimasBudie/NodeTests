@@ -5,6 +5,7 @@ const data = { usuario: null, config: null };
 let industriaController = {
 
 	index: async (req, res) => {
+		res.locals.tipoConta = req.session.tipoConta;
 		try{
 			res.render('pages/industria-lista', {
 				data: await service.getIndustria(),
@@ -19,6 +20,7 @@ let industriaController = {
 	},
 
 	cadastro: async (req, res) => {
+		res.locals.tipoConta = req.session.tipoConta;
 		res.render('pages/industria-cadastro', {
 			data: data,
 			msg: null
@@ -27,6 +29,7 @@ let industriaController = {
 
 
 	 create: async (req, res) => {
+		res.locals.tipoConta = req.session.tipoConta;
         let input = req.body;
          try {  
             data.config = await service.create(input);                     

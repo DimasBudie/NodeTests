@@ -17,6 +17,20 @@ module.exports = {
         });
     },
 
+    getById: (id) => {
+        return new Promise(res => {
+            Usuario
+                .where('_id', id)
+                .exec((err, doc) => {
+                    if (!doc) {
+                        res(null)
+                    } else {
+                        res(doc[0]);
+                    }
+                });
+        });
+    },
+
     getByUsername: (username) => {
         return new Promise(res => {
             Usuario
@@ -31,10 +45,36 @@ module.exports = {
         });
     },
 
+    get: () => {
+        return new Promise(res => {
+            Usuario
+                .find((err, doc) => {                    
+                    res(doc);
+                });
+        });
+    },
+
+    create: (usuario) => {
+        return new Promise(res => {            
+            let db = new Usuario(usuario);               
+            db.id = db._id;            
+            res(db.save());            
+        });
+    },
+
     update: (usuario) => {
         return new Promise(res => {
-            Usuario.update({'usuario' : usuario.usuario}, usuario, (err, doc) => {                
+            Usuario.update({'_id' : usuario.id}, usuario, (err, doc) => {                
                 return doc != null ? res(usuario) : res(null);
+            });
+        });
+    },
+
+    delete: (id) => {
+        return new Promise(res => {
+            Usuario
+            .findOneAndDelete({ '_id': id }, (err, doc) => {
+                res(doc);
             });
         });
     },

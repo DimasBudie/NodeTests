@@ -2,8 +2,9 @@
 
 const express = require('express');
 const router = express.Router();
-const authController = require('./usuario.controller');
+const authController = require('./auth.controller');
 const homeController = require('./home.controller');
+const usuarioController = require('./usuario.controller');
 const clienteController = require('./cliente.controller');
 const emprestimoController = require('./emprestimo.controller');
 const configuracaoController = require('./configuracao.controller');
@@ -13,6 +14,7 @@ const industriaController = require('./industria.controller');
 const auth = authController.validateAuth;
 setRoutesForAuth(router);
 setRoutesForHome(router);
+setRoutesForUsuario(router);
 setRoutesForCliente(router);
 setRoutesForEmprestimo(router);
 setRoutesForConfiguracao(router);
@@ -33,6 +35,14 @@ function setRoutesForIndustria(router){
 
 function setRoutesForHome(router) {
     router.get('/home', auth, homeController.index);
+}
+
+function setRoutesForUsuario(router) {
+    router.get('/usuario', auth, usuarioController.index);
+    router.get('/usuario-cadastro', auth, usuarioController.cadastro);
+    router.get('/usuario-detalhe/:id', auth, usuarioController.detalhe);
+    router.get('/usuario-deletar/:id', auth, usuarioController.deletar);
+    router.post('/usuario-criacao', auth, usuarioController.create);
 }
 
 function setRoutesForCliente(router) {
