@@ -64,17 +64,32 @@ let usuarioController = {
     },
 
     create: async (req, res) => {
+        var mensagem =[];
         res.locals.tipoConta = req.session.tipoConta;
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
         let input = req.body;
          try {            
-            data.config = await service.updateUsuario(input);               
-            res.render('pages/usuario-lista', {
-            data: await service.getUsuario(),
-            msg: null
-        });
+            data.config = await service.updateUsuario(input);                         
+            if(data.config.erros){   
+                if(data.config.errors.email){
+                    mensagem.push(data.config.errors.email.message)
+                }
+                if(data.config.errors.usuario){
+                    mensagem.push(data.config.errors.usuario.message)
+                }
+                console.log(mensagem);
+                res.render('pages/usuario-cadastro', {
+                    data: input,
+                    msg: mensagem
+                });  
+            } else{
+                res.render('pages/usuario-lista', {
+                    data: await service.getUsuario(),
+                    msg: null
+                });
+            }      
         } catch (error) {
             console.log('Deu Zica: ' + error);
              res.render('pages/usuario-lista', {

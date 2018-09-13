@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
   <%- include('../partials/head') %>
 </head>
 
 <body class="">
+  <input type="hidden" id="msgErro" value="<%=msg%>" />
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <%- include('../partials/sidebar') %>
@@ -21,7 +22,11 @@
           <div class="col-md-12">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Novo Usuário</h5>
+                <%if(data._id != '' && data._id != null && data._id != undefined){%>
+                  <h5 class="card-title">Edição de Usuário</h5>
+                <%} else{%>
+                  <h5 class="card-title">Novo Usuário</h5>  
+                <%}%>
               </div>
               <div class="card-body">
                 <form  method="POST" action="/usuario-criacao">
@@ -41,27 +46,27 @@
                         <%}%>
                         <div class="form-group">
                           <label>Nome</label>
-                          <input type="text" name="nome" id="nome" class="form-control" value="<%= data.nome %>" placeholder="Nome Completo" required>
+                          <input type="text" name="nome" autocomplete="off" id="nome" class="form-control" value="<%= data.nome %>" placeholder="Nome Completo" required>
                         </div>
                       </div>
                       <div class="col-md-6 pl-1">                          
                         <div class="form-group">
                           <label>E-mail</label>
-                          <input type="email" name="email" id="email" class="form-control" value="<%= data.email %>" required>
+                          <input type="email" name="email" autocomplete="off" id="email" class="form-control" value="<%= data.email %>" required>
                         </div>
                       </div>                      
                     </div>
                     <div class="row">
                         <div class="col-md-4 pr-1">
                           <div class="form-group">
-                            <label>Login</label>
-                            <input type="text" name="usuario" id="usuario" class="form-control" value="<%= data.usuario %>" required>
+                            <label>Usuário</label>
+                            <input type="text" name="usuario" autocomplete="off" id="usuario" class="form-control" value="<%= data.usuario %>" required>
                           </div>
                         </div>
                         <div class="col-md-4 px-1">
                           <div class="form-group">
                             <label>Senha</label>
-                            <input type="password" name="senha" id="senha" value="<%= data.senha %>" class="form-control" >
+                            <input type="password" name="senha" id="senha" value="<%= data.senha %>" class="form-control" required >
                           </div>
                         </div>
                         <div class="col-md-4 pl-1">
@@ -95,6 +100,33 @@
 <%- include('../partials/scripts') %>
   <script>
     $(document).ready(function () {
+      var mensagem = "<%=msg%>";      
+      if(mensagem != ''){
+        var contentMessage = mensagem.split(',');
+        for(var i=0; i<contentMessage.length; i++){
+          if(contentMessage[i].includes('usuario')){
+            var element = document.getElementById("usuario");
+            element.classList.add("error");            
+          }
+          if(contentMessage[i].includes('email')){
+            var element = document.getElementById("email");
+            element.classList.add("error");    
+          }
+          $.notify({
+                    icon: "nc-icon nc-alert-circle-i",
+                    message: contentMessage[i]
+                },
+                {
+                    type: 'danger',
+                    timer: 4000,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    }
+                });
+        }
+      }
+
       if($("#tipoContahidden").val() != null){
         setSelectedIndex(document.getElementById("selectTipoConta"),$("#tipoContahidden").val()); 
       }

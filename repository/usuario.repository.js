@@ -54,11 +54,18 @@ module.exports = {
         });
     },
 
-    create: (usuario) => {
-        return new Promise(res => {            
+    create: (usuario) => {        
+        return new Promise(res => {                 
             let db = new Usuario(usuario);               
             db.id = db._id;            
-            res(db.save());            
+            db.save((err, doc) => {
+                if(!err){
+                    res();
+                }
+                else{
+                    res(err)                
+                }
+            });            
         });
     },
 

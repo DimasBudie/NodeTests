@@ -1837,6 +1837,17 @@ fieldset[disabled] .btn-link.active {
   color: #6bd098;
 }
 
+.has-error .form-control, .form-control.error {
+  background-color: #FFC0A4;
+  color: #EB5E28;
+  border-color: #EB5E28;
+}
+
+.has-error .form-control:focus, .form-control.error:focus {
+  background-color: #FFFFFF;
+  border-color: #EB5E28;
+}
+
 .has-danger .form-control {
   background-color: #FFC0A4;
   border: 1px solid #ef8157;
