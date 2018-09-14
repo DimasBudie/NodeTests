@@ -14,27 +14,7 @@ let dataSchema = new Schema({
   estado: { type: String, default: '' },
   telefone: { type: String, default: '' },
   site: { type: String, default: '' },
-  contatos : Schema.Types.Mixed,
-  responsavelComercial: [{
-  	nome: { type: String, default: '' },
-  	telefone: { type: String, default: '' },
-  }],
-  responsavelLogistica: [{
-  	nome: { type: String, default: '' },
-  	telefone: { type: String, default: '' },
-  }],
-  responsavelFinanceiro: [{
-  	nome: { type: String, default: '' },
-  	telefone: { type: String, default: '' },
-  }],
-  responsavelContrato: [{
-  	nome: { type: String, default: '' },
-  	telefone: { type: String, default: '' },
-  }],
-  responsavelOcorrencias: [{
-  	nome: { type: String, default: '' },
-  	telefone: { type: String, default: '' },
-  }]
+  contatos : Schema.Types.Mixed,  
 }, { collection: 'Industria' });
 
 module.exports = mongoose.model('Industria', dataSchema);

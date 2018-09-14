@@ -41,7 +41,7 @@
                        <% data.forEach(item => { %>
                       <tr>
                         <td>
-                          <a href="/cliente-detalhe/<%= item._id %>"><%= item.nomeFantasia %></a>
+                          <a href="/industria-detalhe/<%= item._id %>"><%= item.nomeFantasia %></a>
                         </td>
                          <td>
                           <%= item.razaoSocial %>
@@ -54,13 +54,13 @@
                         </td>     
                         <td>
                           <%= item.cidade %>
-                        </td>                     
+                        </td>    
                         <td>
-                          <a href="/cliente-detalhe/<%= item._id %>" class="btn btn-info btn-fill btn-wd">Visualizar</a>
+                            <a href="/industria-detalhe/<%= item._id %>" class="nc-icon nc-single-copy-04"></a>
                         </td>
                         <td>
-                          <a href="/cliente-deletar/<%= item._id %>" class="btn btn-info btn-fill btn-wd">Deletar</a>
-                        </td>
+                          <a href="/industria-deletar/<%= item._id %>" class="nc-icon nc-simple-remove"></a>
+                        </td>                                         
                       </tr>
                       <% }); %>                      
                     </tbody>

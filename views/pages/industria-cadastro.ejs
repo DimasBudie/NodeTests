@@ -18,13 +18,18 @@
                         <div class="col-md-12">
                             <div class="card card-user">
                                 <div class="card-header">
-                                    <h5 class="card-title">Nova Indústria</h5>
+                                    <%if(data._id != '' && data._id != null && data._id != undefined){%>    
+                                        <h5 class="card-title">Edição de Indústria</h5>
+                                        <%} else{%>
+                                            <h5 class="card-title">Nova Indústria</h5>  
+                                        <%}%>
                                 </div>
                                 <div class="card-body">
                                     <form  method="POST" action="/industria-criacao">
                                         <div class="row">
                                             <div class="col-md-6 pr-1">
                                                 <div class="form-group">
+                                                        <input type="hidden" value="<%= data._id %>" name="id" />
                                                 <label>Razão Social</label>
                                                 <input type="text" name="razaoSocial" class="form-control" placeholder="" value="<%= data.razaoSocial %>" required>
                                                 </div>
@@ -182,7 +187,7 @@
                                                         </thead>
                                                         <tbody id="allContacts">
                                                             <%
-                                                            if(data.referencias != undefined){
+                                                            if(data.contatos != undefined){
                                                             var y = JSON.parse(data.contatos);
                                                             
                                                             y.forEach(item => { %>

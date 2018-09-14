@@ -30,7 +30,8 @@ function setRoutesForIndustria(router){
     router.get('/industria', auth, industriaController.index);
     router.get('/industria-cadastro', auth, industriaController.cadastro);
     router.post('/industria-criacao', auth, industriaController.create);
-
+    router.get('/industria-detalhe/:id', auth, industriaController.detalhe);
+    router.get('/industria-deletar/:id', auth, industriaController.deletar);
 }
 
 function setRoutesForHome(router) {

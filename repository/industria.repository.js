@@ -8,7 +8,15 @@ module.exports = {
             db.id = db._id;                        
             res(db.save());
         });
-    },
+	},
+	
+	update: (industria) =>{
+		return new Promise(res => {
+			Industria.update({'_id' : industria.id}, industria, (err, doc) => {                
+                return doc != null ? res(industria) : res(null);
+            });
+		});
+	},
 
 	get: () => {		
 		let industrias = new Promise(res => {
@@ -24,4 +32,22 @@ module.exports = {
 		}); 		
 		return industrias;
 	},
+
+	getById: async (id) => {
+        return new Promise(res => {
+            Industria
+                .findOne({ '_id': id }, (err, doc) => {
+                    res(doc);
+                });
+        });
+    },
+
+    delete: async (id) => {
+        return new Promise(res => {
+            Industria
+                .findOneAndDelete({ '_id': id }, (err, doc) => {
+                    res(doc);
+                });
+        });
+    },
 }

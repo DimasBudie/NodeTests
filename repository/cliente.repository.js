@@ -11,8 +11,7 @@ module.exports = {
     },
 
     update: (cliente) => {
-        return new Promise(res => {
-            console.log(cliente);
+        return new Promise(res => {            
             Cliente.update({'_id' : cliente._id}, cliente, (err, doc) => {                
                 return doc != null ? res(cliente) : res(null);
             });
