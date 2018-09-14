@@ -1,4 +1,5 @@
 const service = require('../service/usuario.service');
+const data = { usuario: null, config: null };
 
 module.exports = {
 
@@ -20,7 +21,10 @@ module.exports = {
             req.session.tipoConta = data.tipoConta;
             req.session.usuarioId = data._id;
             res.locals.tipoConta = req.session.tipoConta;
-            res.render('pages/home');
+            res.render('pages/home', {
+                data: data.usuario,
+                msg: null
+            });      
         } else {
             res.render('pages/login', { isAuthValid: false });
         }

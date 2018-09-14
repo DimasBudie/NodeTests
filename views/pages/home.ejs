@@ -7,6 +7,28 @@
 
 <body class="">
   <div class="wrapper ">
+      <div class="fixed-plugin" style="display: none">
+          <div class="dropdown show-dropdown open show">
+              <a href="#" data-toggle="dropdown" aria-expanded="true">
+              <i class="fa fa-cog fa-2x"> </i>
+              </a>
+              <ul class="dropdown-menu show"  >
+                <div class="card card-timeline card-plain">
+                  <div class="timeline-panel">
+                      <div class="timeline-heading">
+                        <span class="label label-danger">Por favor, altere a sua senha</span>
+                      </div>
+                      <div class="timeline-body">
+                        <p>Para mantermos um bom nível de segurança, solicitamos que a senha seja alterada. </p>
+                        <p>Hoje você está utilizando a senha gerada na criação do seu usuário, e é necessário altera-lá. </p>
+
+                        <button type="button" class="btn btn-info" >Alterar a senha</button>
+                      </div>                  
+                  </div>     
+                </div>   
+              </ul>
+          </div>
+      </div>
     <div class="sidebar" data-color="white" data-active-color="danger">
       <%- include('../partials/sidebar') %>
     </div>
@@ -198,6 +220,9 @@
       $(document).ready(function () {
         // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
         demo.initChartsPages();
+        if(!"<%= data.senhaPadraoAlterada%>"){         
+          $(".fixed-plugin").show();
+        }
       });
     </script>
 </body>

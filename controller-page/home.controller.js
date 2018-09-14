@@ -1,3 +1,7 @@
+const service = require('../service/usuario.service');
+const data = { usuario: null, config: null };
+
+
 
 let homeController = {
 
@@ -5,7 +9,12 @@ let homeController = {
      * Renderiza a pagina inicial.
      */
     index: (req, res) => {
-        res.render('pages/home');
+        res.locals.tipoConta = req.session.tipoConta;
+        var usuarioDetalhes = req.session.user;
+        res.render('pages/home', {
+            data: usuarioDetalhes,
+            msg: null
+        });        
     },
 
 }
