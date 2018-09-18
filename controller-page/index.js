@@ -64,6 +64,7 @@ function setRoutesForEmprestimo(router) {
 function setRoutesForConfiguracao(router){
     router.get('/configuracao', auth, configuracaoController.index);
     router.post('/configuracao-usuario', auth, configuracaoController.updatePassword);
+    router.post('/configuracao-logo', auth, configuracaoController.updateLogo);
     router.post('/configuracao-juros', auth, configuracaoController.updateJuros);
 }
 

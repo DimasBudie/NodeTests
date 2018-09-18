@@ -3,7 +3,8 @@ let Schema = mongoose.Schema;
 
 let dataSchema = new Schema({
   empresa: {type: String, default: ''},
-  logo: { data: Buffer, contentType: String },  
+  logo: { type: Buffer, contentType: String },  
+  usuarioId: {type: mongoose.Schema.Types.ObjectId},
 }, { collection: 'Configuracao' });
 
 module.exports = mongoose.model('Configuracao', dataSchema);

@@ -21,44 +21,62 @@
           <div class="col-md-8">
             <div>
               <% if(msg != null){ %>
-                <div class="alert alert-success alert-dismissible fade show">
-                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                    <i class="nc-icon nc-simple-remove"></i>
-                  </button>
-                  <span>
-                    <%= msg %>
-                  </span>
-                </div>
-                <% } %>
+              <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="nc-icon nc-simple-remove"></i>
+                </button>
+                <span>
+                  <%= msg %>
+                </span>
+              </div>
+              <% } %>
             </div>
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"></h4>
               </div>
               <div class="card-body">
-                <div class="row">
-                  <div class="col-md-6 pr-1">
-                    <div class="form-group">
-                      <label>Nome Empresa</label>
-                      <input type="text" class="form-control" placeholder="user" value="<%= data.usuario %>" />
+                <form method="POST" action="/configuracao-logo" enctype='multipart/form-data'>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Upload Image</label>
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                            <span class="btn btn-default btn-file">
+                              Browse… <input type="file" id="imgInp">
+                            </span>
+                          </span>
+                          <input type="text" class="form-control" readonly="">
+                          <input type="hidden" name="logo" id="logo64" />
+                          <input type="hidden" name="id" value="<%=data.config._id%>" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>Nome Empresa</label>
+                        <input type="text" class="form-control" name="empresa" value="<%= data.usuario %>" />
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-4 pr-1">
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
                       <div class="form-group">
-                          <label>Upload Image</label>
-                          <div class="input-group">
-                              <span class="input-group-btn">
-                                  <span class="btn btn-default btn-file">
-                                      Browse… <input type="file" id="imgInp">
-                                  </span>
-                              </span>
-                              <input type="text" class="form-control" readonly="">
-                          </div>
-                          <img id="img-upload">
+                        <div class="author">
+                          <img id="img-upload" class="avatarCustom border-white">
+                        </div>
                       </div>
-                    
+                    </div>
+
                   </div>
-                </div>                
+                  <div class="row">
+                    <div class="col-md-12 pr-1 text-center">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                  </div>
+
+                </form>
               </div>
             </div>
           </div>
@@ -69,15 +87,15 @@
                   <!-- <h4 class="card-title">Ações</h4> -->
                   <div class="card card-plain">
                     <div class="card-header" role="tab" id="headingOne">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
-                        class="collapsed">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                        aria-controls="collapseOne" class="collapsed">
                         Trocar Senha
                         <i class="nc-icon nc-minimal-down"></i>
                       </a>
                     </div>
                     <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
                       <div class="card-body">
-                        <form method="POST" action="/configuracao-usuario">
+                        <form method="POST" action="/configuracao-usuario" >
                           <div class="row">
                             <div class="col-md-12 pr-1">
                               <div class="form-group">
@@ -103,14 +121,14 @@
                                 <input name="novaSenhaRepete" type="password" class="form-control" required />
                               </div>
                             </div>
-                            <div class="col-md-12 pr-1 text-center">                              
+                            <div class="col-md-12 pr-1 text-center">
                               <button type="submit" class="btn btn-primary">Salvar</button>
                             </div>
                           </div>
                         </form>
                       </div>
                     </div>
-                  </div>                  
+                  </div>
                 </div>
               </div>
             </div>
@@ -123,45 +141,51 @@
     </div>
   </div>
   <%- include('../partials/scripts') %>
-    <script>
-      $(document).ready(function () {
-        $('.table').DataTable();
+  <script>
+    $(document).ready(function () {
+      $('.table').DataTable();
 
-        $(document).on('change', '.btn-file :file', function() {
-		var input = $(this),
-			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]);
-		});
+      if("<%=data.config.logo%>" != ""){
+        $("#logo64").val("<%=data.config.logo%>");
+        $('#img-upload').attr('src',"<%=data.config.logo%>");
+        $("#LogoIndustria").attr('src',"<%=data.config.logo%>");
+      }
 
-		$('.btn-file :file').on('fileselect', function(event, label) {
-		    
-		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label;
-		    
-		    if( input.length ) {
-		        input.val(log);
-		    } else {
-		        if( log ) alert(log);
-		    }
-	    
-		});
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        
-		        reader.onload = function (e) {
-		            $('#img-upload').attr('src', e.target.result);
-		        }
-		        
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		}
-
-		$("#imgInp").change(function(){
-		    readURL(this);
-		}); 	
+      $(document).on('change', '.btn-file :file', function () {
+        var input = $(this),
+          label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [label]);
       });
-    </script>
+
+      $('.btn-file :file').on('fileselect', function (event, label) {
+        var input = $(this).parents('.input-group').find(':text'),
+          log = label;
+
+        if (input.length) {
+          input.val(log);
+        } else {
+          if (log) alert(log);
+        }
+
+      });
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            $("#logo64").val(e.target.result);
+            $('#img-upload').attr('src', e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#imgInp").change(function () {
+        readURL(this);
+      });
+    });
+  </script>
 </body>
 
 </html>

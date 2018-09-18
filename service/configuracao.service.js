@@ -14,6 +14,11 @@ module.exports = {
         return config;
     },
 
+    getByUserId: async (userId) => {
+        let config = await repo.getByUserId(userId);
+        return config;
+    },
+
     updateJuros: async (input) => {
         if (!input.taxaInvestidor) throw "TaxaInvestidor é obrigatório";
         if (!input.taxaEmprestimo) throw "TaxaEmprestimo é obrigatório";
@@ -22,6 +27,14 @@ module.exports = {
             return await repo.create(input);
         } else {
             return await repo.update(input);
+        }
+    },
+
+    UploadLogo: async(req, input) => {
+        if (!input.id) {
+            return await repo.createLogo(req, input);
+        } else {
+            return await repo.updateLogo(req, input);
         }
     },
 

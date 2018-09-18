@@ -2,11 +2,13 @@ const appconfig = require('./appconfig');
 const mongoose = require('mongoose');
 const express = require('express');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 
 app.use(logger('dev'));
+app.use(fileUpload());  
 configPage(app);
 configApi(app);
 configDatabase();

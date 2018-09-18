@@ -4220,7 +4220,7 @@ License - nucleoapp.com/license/
   text-transform: uppercase;
   padding: 0.5rem 0;
   display: block;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   font-size: 1rem;
   color: #FFFFFF;
   text-decoration: none;
@@ -4963,6 +4963,14 @@ License - nucleoapp.com/license/
 .card .avatar {
   width: 30px;
   height: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.card .avatarCustom {
+  max-width: 250px;
+  max-height: 250px;
   overflow: hidden;
   border-radius: 50%;
   margin-bottom: 15px;
@@ -6948,3 +6956,4 @@ License - nucleoapp.com/license/
       width: 200px;
   }
 }
+
