@@ -13,7 +13,7 @@
               <i class="fa fa-cog fa-2x"> </i>
               </a>
               <ul class="dropdown-menu show"  >
-                <div class="card card-timeline card-plain">
+                <div class="card card-timeline card-plain" style="margin: 10px">
                   <div class="timeline-panel">
                       <div class="timeline-heading">
                         <span class="label label-danger">Por favor, altere a sua senha</span>
@@ -22,7 +22,12 @@
                         <p>Para mantermos um bom nível de segurança, solicitamos que a senha seja alterada. </p>
                         <p>Hoje você está utilizando a senha gerada na criação do seu usuário, e é necessário altera-lá. </p>
 
-                        <button type="button" class="btn btn-info" >Alterar a senha</button>
+                        <div class="row">
+                          <div class="update ml-auto mr-auto">
+                              <a class="btn btn-info btn-fill btn-wd" href="/configuracao" role="button">Alterar a senha</a>
+                            
+                          </div>
+                        </div>
                       </div>                  
                   </div>     
                 </div>   
@@ -30,7 +35,7 @@
           </div>
       </div>
     <div class="sidebar" data-color="white" data-active-color="danger">
-      <%- include('../partials/sidebar') %>
+      <%- include('../partials/sidebar', {ativo : 'home'}) %>
     </div>
     <div class="main-panel">
       <!-- Navbar -->

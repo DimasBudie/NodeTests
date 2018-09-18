@@ -13,13 +13,12 @@
 </div>
 <div class="sidebar-wrapper">
     <ul class="nav">
-         <li id="home" class="active">
+         <li id="home" >
             <a href="/home">
-                <i class="nc-icon nc-chart-pie-36"></i>
+                <i class="ti-pie-chart"></i>
                 <p>Home</p>
             </a>
         </li>
-        <%console.log("Tipo Conta = "+locals.tipoConta)%>
         <%if(locals.tipoConta == "industria"){%>
         <li id="cliente">        
             <a href="/cliente">
@@ -31,52 +30,53 @@
         <%if(locals.tipoConta == "admin"){%>
         <li id="industria">        
             <a href="/industria">
-                <i class="nc-icon nc-briefcase-24"></i>
+                <i class=" ti-briefcase"></i>
                 <p>Indústria</p>
             </a>
         </li>
         <li id="Usuario">        
                 <a href="/usuario">
-                    <i class="nc-icon nc-briefcase-24"></i>
+                    <i class="ti-user"></i>
                     <p>Usuário</p>
                 </a>
             </li>
-        <%}%>
-       <!-- <li>
-            <a href="/emprestimo">
-                <i class="nc-icon nc-money-coins"></i>
-                <p>Empréstimos</p>
-            </a>
-        </li>
-        <li>
-            <a href="/emprestimo-simula">
-                <i class="nc-icon nc-tv-2"></i>
-                <p>Simulador</p>
-            </a>
-        </li> 
-        
-        <li>
-            <a href="/investidor-index">
-                <i class="nc-icon nc-bank"></i>
-                <p>Investidor</p>
-            </a>
-        </li> -->
-        <li>
+        <%}%>       
+        <li id="configuracao">
             <a href="/configuracao">
-                <i class="nc-icon nc-settings-gear-65"></i>
+                <i class="ti-settings"></i>
                 <p>Configurações</p>
             </a>
         </li>
         <li>
             <a href="/logout">
-                <i class="nc-icon nc-simple-remove"></i>
+                <i class="ti-close"></i>
                 <p>Sair</p>
             </a>
         </li>
     </ul>
 </div>
 <script>
+    window.onload = function(){
+        if("<%=ativo%>" == 'configuracao'){
+            $("#configuracao").attr('class', 'active');
+        }
+        if("<%=ativo%>" == 'home'){
+            $("#home").attr('class', 'active');
+        }
+        if("<%=ativo%>" == 'industria'){
+            $("#industria").attr('class', 'active');
+        }
+        if("<%=ativo%>" == 'usuario'){
+            $("#Usuario").attr('class', 'active');
+        }
+        if("<%=ativo%>" == 'motorista'){
+            $("#cliente").attr('class', 'active');
+        }
+    }
     $(document).ready(function () {
+        
+        
+
         // $('.sidebar-wrapper>ul>li').removeClass('active');
         // $('.sidebar-wrapper #' + $('#active-menu').text()).addClass('active');
     });

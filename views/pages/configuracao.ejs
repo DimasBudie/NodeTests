@@ -8,7 +8,7 @@
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
-      <%- include('../partials/sidebar') %>
+      <%- include('../partials/sidebar', { ativo : 'configuracao'}) %>
     </div>
     <div class="main-panel">
       <!-- Navbar -->
@@ -49,14 +49,14 @@
                           </span>
                           <input type="text" class="form-control" readonly="">
                           <input type="hidden" name="logo" id="logo64" />
-                          <input type="hidden" name="id" value="<%=data.config._id%>" />
+                          <input type="hidden" name="id" value="<%=data._id%>" />
                         </div>
                       </div>
                     </div>
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label>Nome Empresa</label>
-                        <input type="text" class="form-control" name="empresa" value="<%= data.usuario %>" />
+                        <input type="text" class="form-control" name="empresa" value="<%= data.empresa %>" />
                       </div>
                     </div>
                   </div>
@@ -145,10 +145,10 @@
     $(document).ready(function () {
       $('.table').DataTable();
 
-      if("<%=data.config.logo%>" != ""){
-        $("#logo64").val("<%=data.config.logo%>");
-        $('#img-upload').attr('src',"<%=data.config.logo%>");
-        $("#LogoIndustria").attr('src',"<%=data.config.logo%>");
+      if("<%=data.logo%>" != ""){
+        $("#logo64").val("<%=data.logo%>");
+        $('#img-upload').attr('src',"<%=data.logo%>");
+        $("#LogoIndustria").attr('src',"<%=data.logo%>");
       }
 
       $(document).on('change', '.btn-file :file', function () {

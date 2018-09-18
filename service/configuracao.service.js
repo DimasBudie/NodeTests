@@ -31,6 +31,7 @@ module.exports = {
     },
 
     UploadLogo: async(req, input) => {
+        console.log(input.id);
         if (!input.id) {
             return await repo.createLogo(req, input);
         } else {

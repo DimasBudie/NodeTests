@@ -55,6 +55,8 @@ module.exports = {
         if (!input.novaSenhaRepete) throw "Nova é obrigatória";        
 
         let model = await repo.getByUsername(input.usuario);
+
+        
         model.senha = input.novaSenha;
         return await repo.update(model);
     },

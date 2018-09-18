@@ -5,14 +5,20 @@ var fs = require('fs');
 const config = require('../appconfig');
 const fileUpload = require('express-fileupload');
 
-const data = { usuario: null, config: null };
+const data = { usuario: null, config: null, logo: null, _id: null, empresa: null  };
 
 module.exports = {
 
     // Renderiza a pagina inicial.
-    index: async (req, res) => {        
-        data.usuario = req.session.user;
-        data.config = await configService.getByUserId(req.session.usuarioId);   
+    index: async (req, res) => {     
+        res.locals.tipoConta = req.session.tipoConta;   
+        data.usuario = req.session.user;        
+        let config = await configService.getByUserId(req.session.usuarioId);   
+        if(config){
+            data.logo = config.logo;
+            data.empresa = config.empresa;
+            data._id = config._id;
+        }
         res.render('pages/configuracao', {
             data: data,
             msg: null
@@ -20,8 +26,21 @@ module.exports = {
     },
 
     updatePassword: async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
         let input = req.body;
         try {
+            let usuario = usuarioService.getByLogin(req.session.user);
+            if(!usuario){
+                return;
+            }
+            if(usuario.senha != input.senhaAntiga){
+                res.render('pages/configuracao', {
+                    data: data,
+                    msg: "Senha antiga invalida"
+                });
+                return;
+            }
+            console.log();
             data.usuario = req.session.user;
             data.config = await usuarioService.updatePassword({
                 usuario: input.usuario,
@@ -43,9 +62,11 @@ module.exports = {
     },
     
     updateLogo: async (req, res) => {
-
-        console.log(req.body);
-        configService.UploadLogo(req, req.body);data.config = req.body;
+        res.locals.tipoConta = req.session.tipoConta;        
+        configService.UploadLogo(req, req.body);
+        data.config = req.body;
+        data.logo = req.logo;
+        data.empresa = req.empresa;
         res.render('pages/configuracao', {
             data: data,  
             msg: config.okMessage 
@@ -53,6 +74,7 @@ module.exports = {
     },
 
     updateJuros: async (req, res) => {
+        res.locals.tipoConta = req.session.tipoConta;
         let input = req.body;
         try {
             data.config = await configService.updateJuros({
@@ -74,39 +96,3 @@ module.exports = {
     },
 
 };
-
-function teste(request, response){
-    console.log("Entrou no Teste");
-        var storage = multer.diskStorage({
-        destination: function (request, file, callback) {
-          callback(null, '/example/uploads');
-        },
-        filename: function (request, file, callback) {
-          console.log(file);
-          callback(null, file.originalname)
-        }
-      });
-
-      var upload = multer({storage: storage}).array('photo', 5);
-
-      var filesBase64 = [];
-  upload(request, response, function(err) {
-    if(err) {
-      console.log('Error Occured');
-      return;
-    }
-    console.log(request.files);
-    for(var i = 0; i < request.files.length; i++) {
-      filesBase64.push({
- fileName : request.files[i].originalname,
- base64 : new Buffer(fs.readFileSync(request.files[i].path)).toString('base64')
-      });
-      fs.unlink(request.files[i].path);
-      console.log('File Name : ' + filesBase64[i].fileName);
-
-      console.log('Base 64 : ' + filesBase64[i].base64.substring(0,50));
-    }
-    
-    console.log('Photo Uploaded');
-  })
-}
