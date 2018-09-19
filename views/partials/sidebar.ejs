@@ -4,13 +4,14 @@
 <div class="logo">
     <a href="/home" class="simple-text logo-mini">
         <div class="logo-image-small">
-            <img id="LogoIndustria" src="../assets/img/tempLogo.png">
+            <img id="LogoIndustria">
         </div>
     </a>
-    <a href="/home" class="simple-text logo-normal">
-        Plataforma de Negócios
-    </a>
+    <div class="logo">
+        <a href="/home" class="navbar-brand" ><b id="NomeEmpresa" style="color: #66615B"></b></a>
+    </div>
 </div>
+
 <div class="sidebar-wrapper">
     <ul class="nav">
          <li id="home" >
@@ -57,6 +58,8 @@
 </div>
 <script>
     window.onload = function(){
+        loadLogo();
+
         if("<%=ativo%>" == 'configuracao'){
             $("#configuracao").attr('class', 'active');
         }
@@ -74,10 +77,22 @@
         }
     }
     $(document).ready(function () {
-        
+        loadLogo();
         
 
         // $('.sidebar-wrapper>ul>li').removeClass('active');
         // $('.sidebar-wrapper #' + $('#active-menu').text()).addClass('active');
+
+        
     });
+
+    function loadLogo(){        
+            if('<%=locals.logo%>' != "" && '<%=locals.logo%>' != null){                
+                $("#LogoIndustria").attr('src',"<%=locals.logo%>");
+            }
+            if('<%=locals.empresa%>' != "" && '<%=locals.empresa%>' != null){
+                $("#NomeEmpresa").text("<%=locals.empresa%>");
+            }
+        }
+
 </script>

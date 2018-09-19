@@ -14,18 +14,11 @@ configApi(app);
 configDatabase();
 startServer(app);
 
-app.use(function(req, res, next) {
-  console.log('Passou Aqui: ' + req.session.user);
-  res.locals.user = req.session.user;
-  next();
-});
-
 /**
  * Config page routes and dependencies
  * @param {*} app 
  */
-function configPage(app) {
-
+function configPage(app) {  
   // Set default parser and engine used to render pages.
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());

@@ -1,4 +1,6 @@
 const service = require('../service/usuario.service');
+const configService = require('../service/configuracao.service');
+const defaultConfig = require('../helper/defaultConfigurationsHelper');
 const data = { usuario: null, config: null };
 
 module.exports = {
@@ -7,7 +9,7 @@ module.exports = {
         res.render('pages/login', { isAuthValid: true });
     },
 
-    login: async (req, res) => {
+    login: async (req, res) => {        
         let input = req.body;
         if (!input.username || !input.password) {
             res.render('pages/login', { isAuthValid: false });
@@ -21,6 +23,9 @@ module.exports = {
             req.session.tipoConta = data.tipoConta;
             req.session.usuarioId = data._id;
             res.locals.tipoConta = req.session.tipoConta;
+
+            await defaultConfig.loadDefaultInformations(req,res);           
+            
             res.render('pages/home', {
                 data: data.usuario,
                 msg: null

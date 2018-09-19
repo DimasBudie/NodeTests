@@ -1,11 +1,12 @@
 const service = require('../service/usuario.service');
 const config = require('../appconfig');
+const defaultConfig = require('../helper/defaultConfigurationsHelper');
 const data = { usuario: null, config: null };
 
 let usuarioController = {
     index: async (req, res) => {
         try {
-            res.locals.tipoConta = req.session.tipoConta;
+            await defaultConfig.loadDefaultInformations(req,res);
             if(req.session.tipoConta != "admin"){
                 res.render('pages/DeniedAccess');
             }        
@@ -22,8 +23,8 @@ let usuarioController = {
         }
     },
 
-    cadastro: (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+    cadastro: async (req, res) => {
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
@@ -38,7 +39,7 @@ let usuarioController = {
      * pagina de detalhes.
      */
     detalhe: async (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
@@ -51,7 +52,7 @@ let usuarioController = {
     },
 
     deletar : async (req, res) => {        
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
@@ -65,7 +66,7 @@ let usuarioController = {
 
     create: async (req, res) => {
         var mensagem =[];
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }

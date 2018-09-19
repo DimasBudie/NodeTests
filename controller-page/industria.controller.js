@@ -1,11 +1,12 @@
 const service = require('../service/industria.service');
 const config = require('../appconfig');
+const defaultConfig = require('../helper/defaultConfigurationsHelper');
 const data = { usuario: null, config: null };
 
 let industriaController = {
 
 	index: async (req, res) => {
-		res.locals.tipoConta = req.session.tipoConta;
+		await defaultConfig.loadDefaultInformations(req,res);
 		if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
@@ -23,7 +24,7 @@ let industriaController = {
 	},
 
 	cadastro: async (req, res) => {
-		res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
 		if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
@@ -35,7 +36,7 @@ let industriaController = {
 
 
 	 create: async (req, res) => {
-		res.locals.tipoConta = req.session.tipoConta;
+		await defaultConfig.loadDefaultInformations(req,res);
 		if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
@@ -55,8 +56,7 @@ let industriaController = {
         }
 	},
 	detalhe: async (req, res) => {
-		res.locals.tipoConta = req.session.tipoConta;
-		console.log("Tipo Conta - " + req.session.tipoConta);
+		await defaultConfig.loadDefaultInformations(req,res);		
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
@@ -69,7 +69,7 @@ let industriaController = {
     },
 
     deletar : async (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }

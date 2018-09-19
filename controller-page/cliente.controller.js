@@ -1,5 +1,6 @@
 const clienteService = require('../service/cliente.service');
 const config = require('../appconfig');
+const defaultConfig = require('../helper/defaultConfigurationsHelper');
 const data = { usuario: null, config: null };
 
 let clienteController = {
@@ -8,7 +9,7 @@ let clienteController = {
      * Renderiza a pagina inicial.
      */
     index: async (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);     
         try {
             if(req.session.tipoConta != "industria"){
                 res.render('pages/DeniedAccess');
@@ -26,8 +27,8 @@ let clienteController = {
         }
     },
 
-    cadastro: (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+    cadastro: async (req, res) => {
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }
@@ -42,7 +43,7 @@ let clienteController = {
      * pagina de detalhes.
      */
     detalhe: async (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }
@@ -55,7 +56,7 @@ let clienteController = {
     },
 
     deletar : async (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }
@@ -68,7 +69,7 @@ let clienteController = {
     },
 
     create: async (req, res) => {
-        res.locals.tipoConta = req.session.tipoConta;
+        await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "industria"){
             res.render('pages/DeniedAccess');
         }
