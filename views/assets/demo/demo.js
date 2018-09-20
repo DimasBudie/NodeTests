@@ -22,14 +22,14 @@ demo = {
       type: 'line',
 
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+        labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "dez"],
         datasets: [{
             borderColor: "#6bd098",
             backgroundColor: "#6bd098",
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354]
+            data: [300, 310, 316, 322, 330, 326, 333, 345, 338, 354, 456, 326]
           },
           {
             borderColor: "#f17e5d",
@@ -37,7 +37,7 @@ demo = {
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420]
+            data: [320, 340, 365, 360, 370, 385, 390, 384, 408, 420, 320, 345]
           },
           {
             borderColor: "#fcc468",
@@ -45,7 +45,7 @@ demo = {
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484]
+            data: [370, 394, 415, 409, 425, 445, 460, 450, 478, 484, 325, 200]
           }
         ]
       },
@@ -94,9 +94,10 @@ demo = {
 
   },
 
-  initChartsPages: function() {
+  initChartsPages: function(tipoConta) {
     chartColor = "#FFFFFF";
 
+    if(tipoConta == 'admin'){
     ctx = document.getElementById('chartHours').getContext("2d");
 
     myChart = new Chart(ctx, {
@@ -110,7 +111,7 @@ demo = {
             pointRadius: 0,
             pointHoverRadius: 0,
             borderWidth: 3,
-            data: [23000, 10000, 60000, 43000, 78500, 3500, 6500, 0, 0, 0, 0, 0]
+            data: [0, 12, 8, 22, 19, 3, 28, 15, 13, 0, 0, 0]
           },
           // {
           //   borderColor: "#f17e5d",
@@ -136,7 +137,7 @@ demo = {
         },
 
         tooltips: {
-          enabled: false
+          enabled: true
         },
 
         scales: {
@@ -146,7 +147,7 @@ demo = {
               fontColor: "#9f9f9f",
               beginAtZero: false,
               maxTicksLimit: 5,
-              //padding: 20
+              padding: 20
             },
             gridLines: {
               drawBorder: false,
@@ -172,7 +173,8 @@ demo = {
         },
       }
     });
-
+  }
+  else{
 
     ctx = document.getElementById('chartEmail').getContext("2d");
 
@@ -191,7 +193,7 @@ demo = {
             '#ef8157'
           ],
           borderWidth: 0,
-          data: [342, 480, 530, 120]
+          data: [8, 20, 48, 2]
         }]
       },
 
@@ -208,7 +210,7 @@ demo = {
         },
 
         tooltips: {
-          enabled: false
+          enabled: true
         },
 
         scales: {
@@ -243,7 +245,7 @@ demo = {
     var speedCanvas = document.getElementById("speedChart");
 
     var dataFirst = {
-      data: [20000, 18000, 58000, 51000, 76000, 6000, 0, 0, 0, 0, 0, 0],
+      data: [3, 25, 2, 1, 2, 20, 8, 6, 9, 0, 0, 0],
       fill: false,
       borderColor: '#fbc658',
       backgroundColor: 'transparent',
@@ -254,7 +256,7 @@ demo = {
     };
 
     var dataSecond = {
-      data: [220000, 198000, 175000, 190000, 210000, 215000, 195000, 195000, 195000, 195000, 195000, 195000],
+      data: [49, 112, 65, 69, 40, 95, 28, 54, 50, 0, 0, 0],
       fill: false,
       borderColor: '#51CACF',
       backgroundColor: 'transparent',
@@ -282,6 +284,7 @@ demo = {
       data: speedData,
       options: chartOptions
     });
+  }
   },
 
   initGoogleMaps: function() {

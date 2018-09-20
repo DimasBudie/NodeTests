@@ -73,26 +73,33 @@ let usuarioController = {
         let input = req.body;
          try {            
             data.config = await service.updateUsuario(input);       
-            console.log(data.config);                  
-            if(data.config.errors){   
-                if(data.config.errors.email){
-                    mensagem.push(data.config.errors.email.message)
-                }
-                if(data.config.errors.usuario){
-                    mensagem.push(data.config.errors.usuario.message)
-                }
-                console.log(mensagem);
-                res.render('pages/usuario-cadastro', {
-                    data: input,
-                    msg: mensagem
-                });  
-                return;
-            } else{
+            if(data.config){
+                if(data.config.errors){   
+                    if(data.config.errors.email){
+                        mensagem.push(data.config.errors.email.message)
+                    }
+                    if(data.config.errors.usuario){
+                        mensagem.push(data.config.errors.usuario.message)
+                    }
+                    console.log(mensagem);
+                    res.render('pages/usuario-cadastro', {
+                        data: input,
+                        msg: mensagem
+                    });  
+                    return;
+                } else{
+                    res.render('pages/usuario-lista', {
+                        data: await service.getUsuario(),
+                        msg: null
+                    });
+                }               
+            }    
+            else{
                 res.render('pages/usuario-lista', {
                     data: await service.getUsuario(),
                     msg: null
                 });
-            }       
+            }   
         } catch (error) {
             console.log('Deu Zica: ' + error);
              res.render('pages/usuario-lista', {
