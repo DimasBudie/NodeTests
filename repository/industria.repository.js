@@ -21,13 +21,8 @@ module.exports = {
 	get: () => {		
 		let industrias = new Promise(res => {
 			Industria
-				.find((err, doc) => {
-					if(err){
-						console.log("erro DA PORRA");
-					}
-					else{
+				.find((err, doc) => {					
 						res(doc);
-					}
 				});
 		}); 		
 		return industrias;

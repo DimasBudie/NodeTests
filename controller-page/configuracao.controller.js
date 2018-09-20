@@ -4,6 +4,7 @@ var multer = require('multer');
 var fs = require('fs');
 const config = require('../appconfig');
 const defaultConfig = require('../helper/defaultConfigurationsHelper');
+const saveImageHelper = require('../helper/SaveImage');
 
 const data = { usuario: null, config: null, logo: null, _id: null, empresa: null  };
 
@@ -30,10 +31,11 @@ module.exports = {
         await defaultConfig.loadDefaultInformations(req,res);
         let input = req.body;
         try {
-            let usuario = usuarioService.getByLogin(req.session.user);
+            let usuario = await usuarioService.getById(req.session.usuarioId);
             if(!usuario){
                 return;
             }
+            console.log("senha antiga: " + usuario.senha + " digitada senha antiga: " + input.senhaAntiga);
             if(usuario.senha != input.senhaAntiga){
                 res.render('pages/configuracao', {
                     data: data,
@@ -61,12 +63,15 @@ module.exports = {
         }
     },
     
-    updateLogo: async (req, res) => {        
-        configService.UploadLogo(req, req.body);
+    updateLogo: async (req, res) => {  
+        usuarioService.UpdateCompanyName(req);     
         data.config = req.body;
-        data.logo = req.logo;
-        data.empresa = req.empresa;  
-        await defaultConfig.loadDefaultInformations(req,res);          
+        data.empresa = req.body.empresa;  
+        req.session.empresa = req.body.empresa;
+        if(req.body.logo && req.body.logo != ""){
+        saveImageHelper.saveImage(req.body.logo, req.session.usuarioId);
+        }
+        //await defaultConfig.loadDefaultInformations(req,res);          
         res.render('pages/configuracao', {
             data: data,  
             msg: config.okMessage 

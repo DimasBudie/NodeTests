@@ -4,7 +4,7 @@
 <div class="logo">
     <a href="/home" class="simple-text logo-mini">
         <div class="logo-image-small">
-            <img id="LogoIndustria">
+            <img id="LogoIndustria" src="../assets/img/<%=locals.usuarioId%>.jpeg">
         </div>
     </a>
     <div class="logo">
@@ -87,9 +87,9 @@
     });
 
     function loadLogo(){        
-            if('<%=locals.logo%>' != "" && '<%=locals.logo%>' != null){                
-                $("#LogoIndustria").attr('src',"<%=locals.logo%>");
-            }
+            // if('<%=locals.logo%>' != "" && '<%=locals.logo%>' != null){                
+            //     $("#LogoIndustria").attr('src',"<%=locals.logo%>");
+            // }
             if('<%=locals.empresa%>' != "" && '<%=locals.empresa%>' != null){
                 $("#NomeEmpresa").text("<%=locals.empresa%>");
             }

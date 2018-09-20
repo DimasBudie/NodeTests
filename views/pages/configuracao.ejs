@@ -60,17 +60,8 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <div class="author">
-                          <img id="img-upload" class="avatarCustom border-white">
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="row">
+                 
+                  <div class="row LogoPreview">
                     <div class="col-md-12 pr-1 text-center">
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
@@ -134,6 +125,22 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-3 ">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Preview Logo</h5>
+                  </div>
+              <div class="card-content">
+                <div class="image">
+                  <img id="img-upload"  src="../assets/img/<%=locals.usuarioId%>.jpeg">
+                </div>
+                </div>                
+              </div>
+              
+            </div>
+          </div>          
+        </div>
       </div>
       <footer class="footer footer-black  footer-white ">
         <%- include('../partials/footer') %>
@@ -144,12 +151,6 @@
   <script>
     $(document).ready(function () {
       $('.table').DataTable();
-
-      if("<%=data.logo%>" != ""){
-        $("#logo64").val("<%=data.logo%>");
-        $('#img-upload').attr('src',"<%=data.logo%>");
-        $("#LogoIndustria").attr('src',"<%=data.logo%>");
-      }
 
       $(document).on('change', '.btn-file :file', function () {
         var input = $(this),
@@ -176,14 +177,14 @@
             $("#logo64").val(e.target.result);
             $('#img-upload').attr('src', e.target.result);
           }
-
           reader.readAsDataURL(input.files[0]);
         }
       }
 
       $("#imgInp").change(function () {
         readURL(this);
-      });
+      });     
+
     });
   </script>
 </body>

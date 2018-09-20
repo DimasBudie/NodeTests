@@ -35,8 +35,11 @@ module.exports = {
         return await repo.get();                
     },
 
+    UpdateCompanyName: async (req) => {
+        await repo.UpdateCompanyName(req);
+    },
+
     updateUsuario: async (usuario) => {
-        console.log(usuario.ativo);
         if(usuario.ativo == "on"){
             usuario.ativo = true;
         }
@@ -48,7 +51,7 @@ module.exports = {
         }
     },
 
-    updatePassword: async (input) => {        
+    updatePassword: async (input) => {   
         if (!input.usuario) throw "Usuário é obrigatório";
         if (!input.senhaAntiga) throw "Senha antiga é obrigatória";
         if (!input.novaSenha) throw "Nova é obrigatória";
@@ -58,6 +61,7 @@ module.exports = {
 
         
         model.senha = input.novaSenha;
+        model.senhaPadraoAlterada = true;
         return await repo.update(model);
     },
 }

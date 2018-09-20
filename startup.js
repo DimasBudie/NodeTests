@@ -1,4 +1,5 @@
 const appconfig = require('./appconfig');
+const defaultConfig = require('./helper/defaultConfigurationsHelper');
 const mongoose = require('mongoose');
 const express = require('express');
 const session = require('express-session');
@@ -76,6 +77,12 @@ function configApi(app) {
 
   // 404 in case of route not found.
   app.use((req, res, next) => {
+    defaultConfig.loadDefaultInformations(req,res);   
+    res.render('pages/home', {
+      data: req.session.user,
+      msg: 'Not Found'
+  });
+  return;
     let err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -86,8 +93,8 @@ function configApi(app) {
  * Database configuration and connection.
  */
 function configDatabase() {
-  mongoose.connect('mongodb://localhost:27017/bancoFrete', { useNewUrlParser: true });
-  //mongoose.connect(appconfig.database);
+  //mongoose.connect('mongodb://localhost:27017/bancoFrete', { useNewUrlParser: true });
+  mongoose.connect(appconfig.database);
   mongoose.connection.on('error', console.error.bind(console, 'Database connection error:'));
   mongoose.connection.once('open', function () {
     console.log('Database connected');

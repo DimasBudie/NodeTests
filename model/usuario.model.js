@@ -9,6 +9,7 @@ let dataSchema = new Schema({
   senha: { type: String, default: '', required: true },
   tipoConta: { type: String, default: '' },
   senhaPadraoAlterada: { type: Boolean, default: false },
+  empresa: {type: String, default: 'Plataforma'},
 }, { collection: 'Usuario' });
 
 dataSchema.plugin(uniqueValidator, { message: 'O valor informado no campo {PATH} já esta sendo usado.' });

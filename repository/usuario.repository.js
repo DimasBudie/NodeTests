@@ -69,6 +69,16 @@ module.exports = {
         });
     },
 
+    UpdateCompanyName: (req) => {
+        let empresa = req.body.empresa;
+        let usuarioId = req.session.usuarioId;
+        return new Promise(res => {
+            Usuario.update({'_id' : usuarioId}, {$set: { empresa: empresa }}, (err, doc) => {                
+                return doc != null ? res("") : res(null);
+            });
+        });
+    },
+
     update: (usuario) => {
         return new Promise(res => {
             Usuario.update({'_id' : usuario.id}, usuario, (err, doc) => {                

@@ -4,7 +4,6 @@ module.exports = {
 
 	getIndustria: async () => {		
 		let industria = repo.get();
-		console.log('industria: ' + industria);
 		return industria;
 	},
 
