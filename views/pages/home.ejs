@@ -7,33 +7,33 @@
 
 <body class="">
   <div class="wrapper ">
-      <div class="fixed-plugin" style="display: none">
-          <div class="dropdown show-dropdown open show">
-              <a href="#" data-toggle="dropdown" aria-expanded="true">
-              <i class="fa fa-cog fa-2x"> </i>
-              </a>
-              <ul class="dropdown-menu show"  >
-                <div class="card card-timeline card-plain" style="margin: 10px">
-                  <div class="timeline-panel">
-                      <div class="timeline-heading">
-                        <span class="label label-danger">Por favor, altere a sua senha</span>
-                      </div>
-                      <div class="timeline-body">
-                        <p>Para mantermos um bom nível de segurança, solicitamos que a senha seja alterada. </p>
-                        <p>Hoje você está utilizando a senha gerada na criação do seu usuário, e é necessário altera-lá. </p>
+    <div class="fixed-plugin" style="display: none">
+      <div class="dropdown show-dropdown open show">
+        <a href="#" data-toggle="dropdown" aria-expanded="true">
+          <i class="fa fa-cog fa-2x"> </i>
+        </a>
+        <ul class="dropdown-menu show">
+          <div class="card card-timeline card-plain" style="margin: 10px">
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <span class="label label-danger">Por favor, altere a sua senha</span>
+              </div>
+              <div class="timeline-body">
+                <p>Para mantermos um bom nível de segurança, solicitamos que a senha seja alterada. </p>
+                <p>Hoje você está utilizando a senha gerada na criação do seu usuário, e é necessário altera-lá. </p>
 
-                        <div class="row">
-                          <div class="update ml-auto mr-auto">
-                              <a class="btn btn-info btn-fill btn-wd" href="/configuracao" role="button">Alterar a senha</a>
-                            
-                          </div>
-                        </div>
-                      </div>                  
-                  </div>     
-                </div>   
-              </ul>
+                <div class="row">
+                  <div class="update ml-auto mr-auto">
+                    <a class="btn btn-info btn-fill btn-wd" href="/configuracao" role="button">Alterar a senha</a>
+
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </ul>
       </div>
+    </div>
     <div class="sidebar" data-color="white" data-active-color="danger">
       <%- include('../partials/sidebar', {ativo : 'home'}) %>
     </div>
@@ -43,35 +43,36 @@
         <%- include('../partials/topbar', {title : 'Posição Geral'}) %>
       </nav>
       <!-- End Navbar -->
-      <div class="content">        
+      <div class="content">
         <div class="row">
+          <%if(data){%>
           <%if(data.tipoConta == 'admin'){%>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                  <div class="card-body ">
-                    <div class="row">
-                      <div class="col-5 col-md-4">
-                        <div class="icon-big text-center icon-warning">
-                          <i class="ti-briefcase text-success"></i>
-                        </div>
-                      </div>
-                      <div class="col-7 col-md-8">
-                        <div class="numbers">
-                          <p class="card-category">Industrias Cadastradas</p>
-                          <p class="card-title">35</p>
-                        </div>
-                      </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-body ">
+                <div class="row">
+                  <div class="col-5 col-md-4">
+                    <div class="icon-big text-center icon-warning">
+                      <i class="ti-briefcase text-success"></i>
                     </div>
                   </div>
-                  <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                      <i class="fa fa-info-circle"></i> Mais Informações
+                  <div class="col-7 col-md-8">
+                    <div class="numbers">
+                      <p class="card-category">Industrias Cadastradas</p>
+                      <p class="card-title">35</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <%} else {%>              
+              <div class="card-footer ">
+                <hr>
+                <div class="stats">
+                  <i class="fa fa-info-circle"></i> Mais Informações
+                </div>
+              </div>
+            </div>
+          </div>
+          <%} else {%>
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
               <div class="card-body ">
@@ -96,7 +97,8 @@
                 </div>
               </div>
             </div>
-          </div>        
+          </div>
+          <%}%>
           <%}%>
           <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
@@ -104,8 +106,8 @@
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                        <i class="ti-package text-success"></i>
-                      
+                      <i class="ti-package text-success"></i>
+
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
@@ -131,8 +133,8 @@
                 <div class="row">
                   <div class="col-5 col-md-4">
                     <div class="icon-big text-center icon-warning">
-                        <i class="ti-package text-warning"></i>
-                      
+                      <i class="ti-package text-warning"></i>
+
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
@@ -217,7 +219,7 @@
                   <i class="fa fa-circle text-danger"></i> Ocorrências
                   <i class="fa fa-circle text-gray"></i> Assuntos Pendêntes
                 </div>
-                <hr>                
+                <hr>
               </div>
             </div>
           </div>
@@ -235,7 +237,7 @@
                   <i class="fa fa-circle text-info"></i> Entregas
                   <i class="fa fa-circle text-warning"></i> Ocorrências
                 </div>
-                <hr/>
+                <hr />
               </div>
             </div>
           </div>
@@ -248,15 +250,16 @@
     </div>
   </div>
   <%- include('../partials/scripts') %>
-    <script>
-      $(document).ready(function () {
-        // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-        demo.initChartsPages('<%=data.tipoConta%>');
-        if(!"<%= data.senhaPadraoAlterada%>"){         
-          $(".fixed-plugin").show();
-        }
-      });
-    </script>
+  <script>
+    $(document).ready(function () {
+      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+      demo.initChartsPages('<%=data.tipoConta%>');
+
+      if ("<%= data.senhaPadraoAlterada%>" == "false") {
+        $(".fixed-plugin").show();
+      }
+    });
+  </script>
 </body>
 
 </html>

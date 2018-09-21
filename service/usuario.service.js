@@ -44,7 +44,7 @@ module.exports = {
             usuario.ativo = true;
         }
         else{usuario.ativo = false;}
-        if(!usuario.id){
+        if(!usuario.id){                        
             return await repo.create(usuario);
         } else{
             return await repo.update(usuario);    

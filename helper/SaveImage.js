@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 module.exports = {
     saveImage: (base64Data, userId) => {        
         // Regular expression for image type:
@@ -22,7 +24,7 @@ module.exports = {
 
         // Save decoded binary image to disk
         try {
-            require('fs').writeFile(userUploadedImagePath, imageBuffer.data,
+            fs.writeFile(userUploadedImagePath, imageBuffer.data,
                 function () {
                     console.log('Saved to disk image attached by user:', userUploadedImagePath);
                 });
@@ -30,7 +32,15 @@ module.exports = {
         catch (error) {
             console.log('ERROR:', error);
         }
-    }
+    },
+
+    createDefaultLogo: (userId) => {
+        var userUploadedImagePath = 'views/assets/img/TempLogo.png';
+        var inStr = fs.createReadStream('views/assets/img/TempLogo.png');
+        var outStr = fs.createWriteStream('views/assets/img/'+userId+'.png');
+
+        inStr.pipe(outStr);
+    },
 }
 
 function decodeBase64Image(dataString) {

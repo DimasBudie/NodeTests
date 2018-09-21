@@ -60,7 +60,7 @@ module.exports = {
             db.id = db._id;            
             db.save((err, doc) => {
                 if(!err){
-                    res();
+                    res(doc);
                 }
                 else{
                     res(err)                

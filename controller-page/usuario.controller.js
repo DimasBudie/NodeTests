@@ -1,6 +1,7 @@
 const service = require('../service/usuario.service');
 const config = require('../appconfig');
 const defaultConfig = require('../helper/defaultConfigurationsHelper');
+const saveImageHelper = require('../helper/SaveImage');
 const data = { usuario: null, config: null };
 
 let usuarioController = {
@@ -72,7 +73,11 @@ let usuarioController = {
         }
         let input = req.body;
          try {            
-            data.config = await service.updateUsuario(input);       
+            data.config = await service.updateUsuario(input);    
+            if(data && !input.id){                
+                 saveImageHelper.createDefaultLogo(data.config._id);
+            }
+            
             if(data.config){
                 if(data.config.errors){   
                     if(data.config.errors.email){

@@ -19,6 +19,7 @@ module.exports = {
         var data = await service.getByLogin(input.username, input.password);
         
         if (data != null) {
+            req.session.usuario = data;
             req.session.user = data.usuario;
             req.session.admin = true;
             req.session.tipoConta = data.tipoConta;

@@ -127,7 +127,7 @@
         </div>
         <div class="row">
           <div class="col-lg-3 ">
-            <div class="card">
+            <div class="card" id="previewLogo" hidden>
                 <div class="card-header">
                     <h5 class="card-title">Preview Logo</h5>
                   </div>
@@ -162,17 +162,22 @@
         var input = $(this).parents('.input-group').find(':text'),
           log = label;
 
-        if (input.length) {
-          input.val(log);
-        } else {
-          if (log) alert(log);
-        }
-
+          var matches = log.match(/\.(jpg|jpeg|png)$/i);
+          if(log.match(/\.(png)$/i)) {            
+            if (input.length) {
+              input.val(log);
+            } else {
+              if (log) alert(log);
+            }
+          }
+          else {
+              alert('Apenas o Formato PNG é permitido. Por favor, selecione outra imagem');
+          }
       });
       function readURL(input) {
-        if (input.files && input.files[0]) {
+        if (input.files && input.files[0] && input.files[0].type == 'image/png') {
           var reader = new FileReader();
-
+          $("#previewLogo").removeAttr("hidden");
           reader.onload = function (e) {
             $("#logo64").val(e.target.result);
             $('#img-upload').attr('src', e.target.result);

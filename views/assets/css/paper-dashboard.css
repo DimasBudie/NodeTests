@@ -4956,7 +4956,7 @@ License - nucleoapp.com/license/
 
 .card .image {
   overflow: hidden;
-  height: 200px;
+  max-height: 500px;
   position: relative;
 }
 
@@ -6482,7 +6482,7 @@ License - nucleoapp.com/license/
 }
 
 .card-login .card-footer {
-  padding: 20px 0 0;
+  padding: 20px 10px 0;
 }
 
 .card-login .card-footer .forgot {

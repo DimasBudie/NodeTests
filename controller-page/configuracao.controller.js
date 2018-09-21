@@ -50,7 +50,7 @@ module.exports = {
                 novaSenha: input.novaSenha,
                 novaSenhaRepete: input.novaSenhaRepete
             });
-
+            req.session.usuario = data.config;
             res.render('pages/configuracao', {
                 data: data,
                 msg: config.okMessage
@@ -71,7 +71,7 @@ module.exports = {
         if(req.body.logo && req.body.logo != ""){
         saveImageHelper.saveImage(req.body.logo, req.session.usuarioId);
         }
-        //await defaultConfig.loadDefaultInformations(req,res);          
+        await defaultConfig.loadDefaultInformations(req,res);          
         res.render('pages/configuracao', {
             data: data,  
             msg: config.okMessage 

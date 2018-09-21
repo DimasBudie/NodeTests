@@ -11,7 +11,7 @@ let homeController = {
      */
     index: async (req, res) => {
         await defaultConfig.loadDefaultInformations(req,res);
-        var usuarioDetalhes = req.session.user;
+        var usuarioDetalhes = req.session.usuario;
         res.render('pages/home', {
             data: usuarioDetalhes,
             msg: null
