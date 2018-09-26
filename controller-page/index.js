@@ -10,6 +10,7 @@ const emprestimoController = require('./emprestimo.controller');
 const configuracaoController = require('./configuracao.controller');
 const investidorController = require('./investidor.controller');
 const industriaController = require('./industria.controller');
+const tabelaController = require('./tabelaFrete.controller');
 
 const auth = authController.validateAuth;
 setRoutesForAuth(router);
@@ -20,6 +21,7 @@ setRoutesForEmprestimo(router);
 setRoutesForConfiguracao(router);
 setRoutesForInvestidor(router);
 setRoutesForIndustria(router);
+setRoutesForTabelaFrete(router);
 
 function setRoutesForAuth(router) {
     router.get('/', authController.index);
@@ -76,6 +78,12 @@ function setRoutesForInvestidor(router){
     router.post('/investidor-dado-basico', auth, investidorController.updateDadoBasico);
     router.post('/investidor-lancamento', auth, investidorController.createLancamento);
     router.post('/investidor-anotacao', auth, investidorController.createAnotacao); 
+}
+
+function setRoutesForTabelaFrete(router){
+    router.get('/tabelaFrete', auth, tabelaController.index);    
+    router.post('/tabelaFrete', auth, tabelaController.listTabela);  
+    router.post('/atualizarFrete', auth, tabelaController.atualizarValorFrete);
 }
 
 

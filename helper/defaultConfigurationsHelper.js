@@ -16,4 +16,6 @@ module.exports = {
             res.locals.usuarioId = req.session.usuarioId;
         //}
     }
+
+    
 }
