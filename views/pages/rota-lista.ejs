@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <div class="sidebar" data-color="white" data-active-color="danger">
+            <%- include('../partials/sidebar', {ativo : 'rotas'}) %>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+                <%- include('../partials/topbar', {title : 'Rotas'}) %>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">                                
+                                <h4 class="card-title">Rotas</h4>                                
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table">
+                                            <thead class=" text-primary">
+                                                <th>Origem </th>
+                                                <th>Destino</th>
+                                                <th>Distância (KM)</th>
+                                                <th>Pedágio (por eixo)</th>
+                                                <th colspan="2">Ações</th>
+                                            </thead>
+                                            <tbody>
+                                                <%if(data){  %>
+
+                                                <% data.forEach(item => { %>                                                
+                                                <tr>
+                                                    <td>
+                                                        <%= item.origem %>
+                                                    </td>
+                                                    <td>
+                                                        <%= item.destino %>
+                                                    </td>
+                                                    <td>
+                                                        <%= item.distancia %>
+                                                    </td>
+                                                    <td>
+                                                        <%= item.pedagio %>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/rota-detalhe/<%= item._id %>" class="nc-icon nc-single-copy-04"></a>
+                                                      </td>
+                                                      <td>
+                                                        <a href="/rota-deletar/<%= item._id %>" class="nc-icon nc-simple-remove"></a>
+                                                      </td>
+                                                </tr>
+                                                <% }); %>
+                                                <%}%>
+                                            </tbody>                                            
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer footer-black  footer-white ">
+                <%- include('../partials/footer') %>
+            </footer>
+        </div>
+    </div>
+    <%- include('../partials/scripts') %>
+    <script>
+        $(document).ready(function () {            
+            $('.table').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

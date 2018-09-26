@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <%- include('../partials/sidebar', {ativo : 'rotas'}) %>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <%- include('../partials/topbar', {title : 'Cadastro de nova Rota'}) %>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div>
+              <% if(msg != null){ %>
+              <div class="alert alert-warning alert-dismissible fade show">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="nc-icon nc-simple-remove"></i>
+                </button>
+                <span>
+                  <%= msg%>
+                </span>
+              </div>
+              <% } %>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"></h4>
+              </div>
+              <div class="card-body">
+                <form method="POST" action="/salvaRota">
+                  <input type="hidden" name="origem" id="origem"/>
+                  <input type="hidden" name="destino" id="destino"/>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Estado Origem</label>
+                        <select id="estadoOrigem" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Cidade Origem</label>
+                        <select id="cidadeOrigem" class="form-control">
+                          <option value="">Selecione um Estado</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Estado Destino</label>
+                        <select id="estadoDestino" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Cidade Destino</label>
+                        <select id="cidadeDestino" class="form-control">
+                          <option value="">Selecione um Estado</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                          <label>Distancia</label>
+                          <input name="distancia" type="text" class="form-control" required placeholder="" id="distancia"/>
+                        </div>
+                      </div>
+                      <div class="col-md-6 pl-1">
+                        <div class="form-group">
+                          <label>Valor Pedagio</label>
+                          <input name="pedagio" type="text" class="form-control" required placeholder="" id="pedagio" />
+                        </div>
+                      </div>
+                    </div>
+                  <div class="row">
+                    <div class="update ml-auto mr-auto">
+                      <input name="id" type="hidden" />
+                      <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <%- include('../partials/footer') %>
+      </footer>
+    </div>
+  </div>
+  <%- include('../partials/scripts') %>
+  <script>
+    $('#estadoOrigem').change(populaCidadeOrigem);
+    $('#estadoDestino').change(populaCidadeDestino);
+
+    function populaCidadeOrigem() {
+      //cidadeOrigem
+      var estado = $('#estadoOrigem').val();
+
+      $('#cidadeOrigem').find('option')
+        .remove();
+
+      if (estado == "") {
+        $('#cidadeOrigem').find('option')
+          .remove()
+          .end()
+          .append('<option value="">Selecione um Estado</option>')
+          .val('whatever');
+      }
+      var cidades = cidadeEstado.getCidadesporEstado(estado);
+
+      if (cidades != null) {
+        var comboCidadeOrigem = document.getElementById("cidadeOrigem");
+        for (var i = 0; i < cidades.length; i++) {
+          var opt = document.createElement("option");
+          opt.value = cidades[i].cidade;
+          opt.text = cidades[i].cidade;
+          comboCidadeOrigem.add(opt, comboCidadeOrigem.options[i]);
+        }
+      }
+    }
+
+    function populaCidadeDestino() {
+      //cidadeOrigem
+      var estado = $('#estadoDestino').val();
+
+      $('#cidadeDestino').find('option')
+        .remove();
+
+      if (estado == "") {
+        $('#cidadeDestino').find('option')
+          .remove()
+          .end()
+          .append('<option value="">Selecione um Estado</option>')
+          .val('whatever');
+      }
+      var cidades = cidadeEstado.getCidadesporEstado(estado);
+
+      if (cidades != null) {
+        var comboCidadeOrigem = document.getElementById("cidadeDestino");
+        for (var i = 0; i < cidades.length; i++) {
+          var opt = document.createElement("option");
+          opt.value = cidades[i].cidade;
+          opt.text = cidades[i].cidade;
+          comboCidadeOrigem.add(opt, comboCidadeOrigem.options[i]);
+        }
+      }
+    }
+    $(document).ready(function () {
+      $('#pedagio').mask('0000,00', {reverse: true});
+      $('#distancia').mask('000000', {reverse: true});
+
+      var t = cidadeEstado.getEstados();
+      if (t != null) {
+        var comboEstadoOrigem = document.getElementById("estadoOrigem");
+        var comboEstadoDestino = document.getElementById("estadoDestino");
+        $('#estadoOrigem').find('option')
+          .remove()
+          .end()
+          .append('<option value="">Selecione um Estado</option>')
+          .val('whatever');
+          $('#estadoDestino').find('option')
+          .remove()
+          .end()
+          .append('<option value="">Selecione um Estado</option>')
+          .val('whatever');
+        for (var i = 0; i < t.length; i++) {
+          var opt = document.createElement("option");
+          opt.value = t[i].id;
+          opt.text = t[i].estado;
+          var opt2 = document.createElement("option");
+          opt2.value = t[i].id;
+          opt2.text = t[i].estado;
+          comboEstadoOrigem.add(opt, comboEstadoOrigem.options[i + 1]);
+          comboEstadoDestino.add(opt2, comboEstadoDestino.options[i + 1]);
+        }
+      }
+
+      $("form").submit(function() {
+        var estadoOrigem = $('#estadoOrigem').val();
+        var estadoDestino = $('#estadoDestino').val();
+        var cidadeOrigem = $("#cidadeOrigem").val();
+        var cidadeDestino = $("#cidadeDestino").val();
+
+        
+          $("#origem").val(cidadeOrigem + "-" + estadoOrigem);
+          $("#destino").val(cidadeDestino + "-" + estadoDestino);
+         });
+
+    });
+  </script>
+</body>
+
+</html>

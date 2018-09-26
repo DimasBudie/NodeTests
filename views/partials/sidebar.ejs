@@ -42,11 +42,17 @@
             </a>
         </li>
         <li id="tabelaFrete">        
-                <a href="/tabelaFrete">
-                    <i class=" ti-briefcase"></i>
-                    <p>Tabela de Frete</p>
-                </a>
-            </li>
+            <a href="/tabelaFrete">
+                <i class=" ti-briefcase"></i>
+                <p>Tabela de Frete</p>
+            </a>
+        </li>
+        <li id="rotas">        
+            <a href="/rotas">
+                <i class=" ti-briefcase"></i>
+                <p>Rotas</p>
+            </a>
+        </li>
         <%}%>       
         <li id="configuracao">
             <a href="/configuracao">
@@ -80,6 +86,12 @@
         }
         if("<%=ativo%>" == 'motorista'){
             $("#cliente").attr('class', 'active');
+        }
+        if("<%=ativo%>" == 'tabelaFrete'){
+            $("#tabelaFrete").attr('class', 'active');
+        }
+        if("<%=ativo%>" == 'rotas'){
+            $("#rotas").attr('class', 'active');
         }
     }
     $(document).ready(function () {

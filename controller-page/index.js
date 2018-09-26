@@ -11,6 +11,7 @@ const configuracaoController = require('./configuracao.controller');
 const investidorController = require('./investidor.controller');
 const industriaController = require('./industria.controller');
 const tabelaController = require('./tabelaFrete.controller');
+const rotaController = require('./rota.controller');
 
 const auth = authController.validateAuth;
 setRoutesForAuth(router);
@@ -22,6 +23,7 @@ setRoutesForConfiguracao(router);
 setRoutesForInvestidor(router);
 setRoutesForIndustria(router);
 setRoutesForTabelaFrete(router);
+setRoutesForRota(router);
 
 function setRoutesForAuth(router) {
     router.get('/', authController.index);
@@ -84,6 +86,12 @@ function setRoutesForTabelaFrete(router){
     router.get('/tabelaFrete', auth, tabelaController.index);    
     router.post('/tabelaFrete', auth, tabelaController.listTabela);  
     router.post('/atualizarFrete', auth, tabelaController.atualizarValorFrete);
+}
+
+function setRoutesForRota(router){
+    router.get('/rotas', auth, rotaController.index);
+    router.get('/cadastrorota', auth, rotaController.cadastraRota);
+    router.post('/salvaRota', auth, rotaController.salvaRota);
 }
 
 
