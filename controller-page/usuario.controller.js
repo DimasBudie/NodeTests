@@ -65,6 +65,16 @@ let usuarioController = {
         });
     },
 
+    deletarPost : async (req, res) => {        
+        await defaultConfig.loadDefaultInformations(req,res);
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
+        }
+        var id = req.body.id;
+        await service.delete(id); 
+        res.send("sucesso");
+    },
+
     create: async (req, res) => {
         var mensagem =[];
         await defaultConfig.loadDefaultInformations(req,res);

@@ -57,14 +57,26 @@ let tableFreteController = {
         });
     },    
     
-    deletar : async (req, res) => {
-        console.log("Chegou aqui");
+    deletar : async (req, res) => {        
         await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
         var id = req.params.id;
         let industria = await rotaService.delete(id); 
+        res.render('pages/rota-lista', {
+            data: await rotaService.getAllRota(),
+            msg: null
+        });
+    },
+
+    deletarPost: async (req, res) => {
+        await defaultConfig.loadDefaultInformations(req,res);
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
+        }
+        let industria = await rotaService.delete(req.body.id);         
+        res.send("Sucesso");
         res.render('pages/rota-lista', {
             data: await rotaService.getAllRota(),
             msg: null

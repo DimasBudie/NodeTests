@@ -80,6 +80,16 @@ let industriaController = {
             msg: null
         });
     },
+
+    deletarPost : async (req, res) => {
+        await defaultConfig.loadDefaultInformations(req,res);
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
+        }
+        var id = req.body.id;
+        let industria = await service.delete(id); 
+        res.send("sucesso");
+    },
 }	
 
 module.exports = industriaController;

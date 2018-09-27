@@ -59,7 +59,7 @@
                             <a href="/industria-detalhe/<%= item._id %>" class="nc-icon nc-single-copy-04"></a>
                         </td>
                         <td>
-                          <a href="/industria-deletar/<%= item._id %>" class="nc-icon nc-simple-remove"></a>
+                          <a href="#" onclick="demo.confirmacao('<%=item._id%>', '/industria-deletar')" class="nc-icon nc-simple-remove"></a>
                         </td>                                         
                       </tr>
                       <% }); %>                      

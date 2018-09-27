@@ -68,6 +68,16 @@ let clienteController = {
         });
     },
 
+    deletarPost : async (req, res) => {
+        await defaultConfig.loadDefaultInformations(req,res);
+        if(req.session.tipoConta != "admin"){
+            res.render('pages/DeniedAccess');
+        }
+        var id = req.body.id;
+        var clienteDetalhes = await clienteService.delete(id); 
+        res.send("Sucesso");
+    },
+
     create: async (req, res) => {
         await defaultConfig.loadDefaultInformations(req,res);
         if(req.session.tipoConta != "admin"){

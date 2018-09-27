@@ -36,6 +36,7 @@ function setRoutesForIndustria(router){
     router.post('/industria-criacao', auth, industriaController.create);
     router.get('/industria-detalhe/:id', auth, industriaController.detalhe);
     router.get('/industria-deletar/:id', auth, industriaController.deletar);
+    router.post('/industria-deletar', auth, industriaController.deletarPost);
 }
 
 function setRoutesForHome(router) {
@@ -47,6 +48,7 @@ function setRoutesForUsuario(router) {
     router.get('/usuario-cadastro', auth, usuarioController.cadastro);
     router.get('/usuario-detalhe/:id', auth, usuarioController.detalhe);
     router.get('/usuario-deletar/:id', auth, usuarioController.deletar);
+    router.post('/usuario-deletar', auth, usuarioController.deletarPost);
     router.post('/usuario-criacao', auth, usuarioController.create);
 }
 
@@ -55,6 +57,7 @@ function setRoutesForCliente(router) {
     router.get('/cliente-cadastro', auth, clienteController.cadastro);
     router.get('/cliente-detalhe/:id', auth, clienteController.detalhe);
     router.get('/cliente-deletar/:id', auth, clienteController.deletar);
+    router.post('/cliente-deletar', auth, clienteController.deletarPost);
     router.post('/cliente-criacao', auth, clienteController.create);
 }
 
@@ -94,6 +97,7 @@ function setRoutesForRota(router){
     router.post('/salvaRota', auth, rotaController.salvaRota);
     router.get('/detalhesRota/:id', auth, rotaController.detalhesRota);
     router.get('/deletarRota/:id', auth, rotaController.deletar);
+    router.post('/deletarRota', auth, rotaController.deletarPost);
 }
 
 

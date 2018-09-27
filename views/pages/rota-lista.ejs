@@ -55,7 +55,7 @@
                                                         <a href="/detalhesRota/<%= item._id %>" class="nc-icon nc-single-copy-04"></a>
                                                       </td>
                                                       <td>
-                                                        <a href="#" onclick="demo.showSwal('warning-message-and-confirmation')" class="nc-icon nc-simple-remove"></a>
+                                                        <a href="#" onclick="demo.confirmacao('<%=item._id%>', '/deletarRota')" class="nc-icon nc-simple-remove"></a>
                                                       </td>
                                                 </tr>
                                                 <% }); %>
@@ -76,29 +76,14 @@
     </div>
     <%- include('../partials/scripts') %>
     <script>
-        $(document).ready(function () {            
-            $('.table').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
-                }
-            });
+        $(document).ready(function () {
+            
+          $('.table').DataTable({
+            "language": {
+            "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese.json"
+            }
         });
-
-        function DeleteRota(id){
-            $.ajax({
-                url : "/deletarRota",
-                type : 'post',
-                data : {
-                    id : id                   
-                }                
-            })
-            .done(function(msg){
-                alert("Removido");
-            })
-            .fail(function(jqXHR, textStatus, msg){
-                alert(msg);
-            }); 
-        }
+        });
     </script>
 
 </body>

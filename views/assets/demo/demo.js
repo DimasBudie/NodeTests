@@ -523,6 +523,61 @@ demo = {
                 })
             }).catch(swal.noop)
         }
-    }
+    }, 
+
+    confirmacao: function(id, urlDelete){
+      swal({
+          title: 'Confirmação!',
+          text: 'Você realmente deseja remover este registro?',
+          type: 'warning',
+          buttons: {
+              cancel: {
+                  text: "Cancel",
+                  value: false,
+                  visible: true,
+                  className: "",
+                  closeModal: true,
+              },
+              confirm: {
+                  text: "OK",
+                  value: true,
+                  visible: true,
+                  className: "",
+                  closeModal: true
+              }
+          },
+          confirmButtonText: 'Sim, desejo Remover!',
+          cancelButtonText: 'Não, Mantenha o registro',
+          confirmButtonClass: "btn btn-success btn-fill",
+          cancelButtonClass: "btn btn-danger btn-fill",
+          buttonsStyling: false
+      }).then(function(e) {
+          if(e == true){
+              $.ajax({
+          url : urlDelete,
+          type : 'post',
+          data : {
+              id : id                   
+          }                
+      })
+      .done(function(msg){
+          swal({
+          title: 'Removido!',
+          text: 'Registro removido com sucesso.',
+          type: 'success',
+          confirmButtonClass: "btn btn-success btn-fill",
+          buttonsStyling: false
+          }).then(function(){
+              window.location.reload();
+          });
+      })
+      .fail(function(jqXHR, textStatus, msg){
+          alert(msg);
+      });
+        
+      }
+      
+      })
+  }
 
 };
