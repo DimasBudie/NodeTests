@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 let dataSchema = new Schema({
   origem: { type: String, default: '' },
   destino: { type: String, default: '' },
-  distancia: { type: Number, default: '' },  
+  distancia: { type: String, default: '' },  
   pedagio: { type: String, default: '' },  
 }, { collection: 'Rotas' });
 

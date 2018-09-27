@@ -34,7 +34,7 @@ module.exports = {
                 .findOne({ '_id': id }, (err, doc) => {
                     res(doc);
                 });
-        });
+        }); 
     },
 
     delete: async (id) => {

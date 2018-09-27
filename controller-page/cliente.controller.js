@@ -11,7 +11,7 @@ let clienteController = {
     index: async (req, res) => {
         await defaultConfig.loadDefaultInformations(req,res);     
         try {
-            if(req.session.tipoConta != "industria"){
+            if(req.session.tipoConta != "admin"){
                 res.render('pages/DeniedAccess');
             }
             res.render('pages/cliente-lista', {
@@ -29,7 +29,7 @@ let clienteController = {
 
     cadastro: async (req, res) => {
         await defaultConfig.loadDefaultInformations(req,res);
-        if(req.session.tipoConta != "industria"){
+        if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
         res.render('pages/cliente-cadastro', {
@@ -44,7 +44,7 @@ let clienteController = {
      */
     detalhe: async (req, res) => {
         await defaultConfig.loadDefaultInformations(req,res);
-        if(req.session.tipoConta != "industria"){
+        if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
         var id = req.params.id;
@@ -57,7 +57,7 @@ let clienteController = {
 
     deletar : async (req, res) => {
         await defaultConfig.loadDefaultInformations(req,res);
-        if(req.session.tipoConta != "industria"){
+        if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
         var id = req.params.id;
@@ -70,7 +70,7 @@ let clienteController = {
 
     create: async (req, res) => {
         await defaultConfig.loadDefaultInformations(req,res);
-        if(req.session.tipoConta != "industria"){
+        if(req.session.tipoConta != "admin"){
             res.render('pages/DeniedAccess');
         }
         let input = req.body;

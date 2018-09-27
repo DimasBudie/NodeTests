@@ -90,8 +90,10 @@ function setRoutesForTabelaFrete(router){
 
 function setRoutesForRota(router){
     router.get('/rotas', auth, rotaController.index);
-    router.get('/cadastrorota', auth, rotaController.cadastraRota);
+    router.get('/cadastrarRota', auth, rotaController.cadastraRota);
     router.post('/salvaRota', auth, rotaController.salvaRota);
+    router.get('/detalhesRota/:id', auth, rotaController.detalhesRota);
+    router.get('/deletarRota/:id', auth, rotaController.deletar);
 }
 
 

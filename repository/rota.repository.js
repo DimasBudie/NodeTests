@@ -10,11 +10,11 @@ module.exports = {
         });                   
     },
 
-    get:(rota) => {
+    get:async (rotaId) => {
         
         return new Promise(res => {
             Rotas
-            .find({origem: rota.origem, destino: rota.destino}, (err, doc) => {                    
+            .findOne({ '_id': rotaId }, (err, doc) => {
                 res(doc);
             });
         });    
@@ -30,16 +30,20 @@ module.exports = {
         });    
     },
 
-    atualizarRota:(rota) => {
-        try{
-        return new Promise(res => {
-            Rotas.update({'_id' : rota.id}, {$set: { valor: rota.valor }}, (err, doc) => {                
-                return doc != null ? res("") : res(null);
+    update: (rota) =>{
+        console.log(rota);
+		return new Promise(res => {
+			Rotas.update({'_id' : rota._id}, rota, (err, doc) => {                
+                return doc != null ? res(rota) : res(null);
             });
+		});
+    },
+    delete: async (id) => {
+        return new Promise(res => {
+            Rotas
+                .findOneAndDelete({ '_id': id }, (err, doc) => {
+                    res(doc);
+                });
         });
-    }
-    catch(error){
-        return error;
-    }
-    }
+    },
 }

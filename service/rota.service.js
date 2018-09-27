@@ -1,7 +1,7 @@
 const repo = require('../repository/rota.repository');
 
 module.exports = {
-	createRota: async (input) => {       
+	createRota: async (input) => {          
         if (!input._id) {            
             return await repo.create(input);
         } else {
@@ -9,15 +9,15 @@ module.exports = {
         }    
     },
     
-    getRota: async (rota) => {
-        return await repo.get(rota);
+    getRota: async (rotaId) => {
+        return await repo.get(rotaId);
     }, 
     
     getAllRota: async () => {
         return await repo.getAll();
     }, 
 
-    atualizarRota: async (rota) => {
-        return await repo.atualizarRota(rota);
+    delete: async (id) => {
+    	return await repo.delete(id);              
     },
 }

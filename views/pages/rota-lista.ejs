@@ -21,7 +21,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">                                
-                                <h4 class="card-title">Rotas</h4>                                
+                                <a class="btn btn-info btn-fill btn-wd" href="/cadastrarRota" role="button">Nova Rota</a>                       
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -52,10 +52,10 @@
                                                         <%= item.pedagio %>
                                                     </td>
                                                     <td>
-                                                        <a href="/rota-detalhe/<%= item._id %>" class="nc-icon nc-single-copy-04"></a>
+                                                        <a href="/detalhesRota/<%= item._id %>" class="nc-icon nc-single-copy-04"></a>
                                                       </td>
                                                       <td>
-                                                        <a href="/rota-deletar/<%= item._id %>" class="nc-icon nc-simple-remove"></a>
+                                                        <a href="#" onclick="demo.showSwal('warning-message-and-confirmation')" class="nc-icon nc-simple-remove"></a>
                                                       </td>
                                                 </tr>
                                                 <% }); %>
@@ -83,6 +83,22 @@
                 }
             });
         });
+
+        function DeleteRota(id){
+            $.ajax({
+                url : "/deletarRota",
+                type : 'post',
+                data : {
+                    id : id                   
+                }                
+            })
+            .done(function(msg){
+                alert("Removido");
+            })
+            .fail(function(jqXHR, textStatus, msg){
+                alert(msg);
+            }); 
+        }
     </script>
 
 </body>
