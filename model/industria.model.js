@@ -15,6 +15,21 @@ let dataSchema = new Schema({
   telefone: { type: String, default: '' },
   site: { type: String, default: '' },
   contatos : Schema.Types.Mixed,  
+  corretor: {type: String, default:''},
+  seguradora: {type: String, default:''},
+  gerenciadora: {type: String, default:''},
+  PIS: { type: String, default: '' },
+  COFINS: { type: String, default: '' },
+  CSLL: { type: String, default: '' },
+  IRPJ: { type: String, default: '' },
+  incluiPedagio: {type: Boolean, default: true },
+  pagamentoAgregado: { type: String, default: '' },
+  faturamento: { type: String, default: '' },
+  prazo: { type: String, default: '' },
+  formaCobranca: { type: String, default: '' },
+  projeto: { type: String, default: '' },
+  observacoes: { type: String, default: '' },
+
 }, { collection: 'Industria' });
 
 module.exports = mongoose.model('Industria', dataSchema);

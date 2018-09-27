@@ -9,23 +9,26 @@
       			<%- include('../partials/sidebar', {ativo : 'industria'}) %>
     		</div>
     		<div class="main-panel">
+                <%let titulo = "";%>
+                <%if(data._id != '' && data._id != null && data._id != undefined){
+                    titulo = "Edição de Indústria";
+                    } else{
+                        titulo ="Nova Indústria";
+                        }%>
                 <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
-                    <%- include('../partials/topbar', {title : 'Cadastro de Indústria'}) %>
+                    <%- include('../partials/topbar', {title : titulo}) %>
                 </nav>
 
                 <div class="content">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-user">
-                                <div class="card-header">
-                                    <%if(data._id != '' && data._id != null && data._id != undefined){%>    
-                                        <h5 class="card-title">Edição de Indústria</h5>
-                                        <%} else{%>
-                                            <h5 class="card-title">Nova Indústria</h5>  
-                                        <%}%>
-                                </div>
+                                
                                 <div class="card-body">
                                     <form  method="POST" action="/industria-criacao">
+                                        <fieldset>
+                                            <legend>Dados Cadastrais</legend>                                            
+                                        </fieldset>
                                         <div class="row">
                                             <div class="col-md-6 pr-1">
                                                 <div class="form-group">
@@ -139,12 +142,46 @@
                                                 </div>
                                             </div>                                           
                                         </div>
+                                        
+                                        <!-- REGIME TRIBUTARIO-->
+                                        <fieldset>
+                                            <legend>Regime Tributário</legend>                                            
+                                        </fieldset>
+                                        <div class="row">
+                                                <div class="col-md-3 pr-1">
+                                                    <div class="form-group">
+                                                    <label>PIS (%)</label>
+                                                    <input type="number" name="PIS" step='0.01' min="0.01" max="70.00" class="form-control"  value="<%= data.PIS %>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 px-1">
+                                                    <div class="form-group">
+                                                    <label>COFINS (%)</label>
+                                                    <input type="number" name="COFINS" step='0.01' min="0.01" max="70.00" class="form-control"  value="<%= data.COFINS %>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 px-1">
+                                                        <div class="form-group">
+                                                        <label>CSLL (%)</label>
+                                                        <input type="number" name="CSLL" step='0.01' min="0.01" max="70.00" class="form-control"  value="<%= data.CSLL %>" required>
+                                                        </div>
+                                                    </div>
+                                                <div class="col-md-3 pl-1">
+                                                    <div class="form-group">
+                                                    <label>IRPJ (%)</label>
+                                                    <input type="number" name="IRPJ" step='0.01' min="0.01" max="70.00" class="form-control"  value="<%= data.IRPJ %>" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         <!-- Contatos -->                                        
                                         <div class="card-body" style="padding: 0px;">
-                                            <h5 class="card-title">Contatos</h5>
+                                            <fieldset>
+                                                <legend>Contatos</legend>                                            
+                                            </fieldset>
                                             <div class="col-md-12 pt-2" style="border: 1px solid #dbbbbb; border-radius: 4px;">      
                                                 <div class="row">                                              
-                                                    <div class="col-md-4 pr-1">
+                                                    <div class="col-md-5 pr-1">
                                                         <div class="form-group">
                                                             <label>Nome</label>
                                                             <input type="text" id="nomeResp" class="form-control" placeholder="">
@@ -169,16 +206,14 @@
                                                             </select>
                                                         </div>
                                                     </div>   
-                                                    <div class="col-md-2 pl-1 pt-3">
+                                                    <div class="col-md-1 px-1 pt-4">
                                                         <input type="button" id="btnAddResponsavel" class="btn btn-info" value="Adicionar" />                                                            
                                                     </div>
                                                 </div>
-                                            </div>      
-                                                                                            
-                                            
+                                            </div> 
                                             <div class="row">
                                                 <div class="col-md-12 pr-3 pl-3">
-                                                    <input type="hidden" name="contatos" id="inputContatos" />
+                                                    <input type="hidden" name="contatos" id="inputContatos" value="<%=data.contatos%>" />
                                                     <table class="table">
                                                         <thead id="contatos" class=" text-primary">
                                                         <th>Nome</th>
@@ -198,7 +233,7 @@
                                                                     <td class="telefone">
                                                                     <%= item.Telefone %>
                                                                     </td>
-                                                                    <td class="tipo">
+                                                                    <td class="setor">
                                                                         <%= item.Setor %>
                                                                     </td>                                                                    
                                                                     <td class="btnDelete">
@@ -211,9 +246,81 @@
                                                     </table>
                                                 </div>
                                             </div>  
-                                        </div>    
+                                        </div> 
+                                        
+                                        <!-- FINANCEIRO -->
+                                        <fieldset>
+                                            <legend>Financeiro</legend>                                            
+                                        </fieldset>
                                         <div class="row">
-                                            <div class="update ml-auto mr-auto">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                    <label>Projeto (%)</label>
+                                                    <input type="number" name="projeto" step='0.01' min="0.01" max="70.00" class="form-control"  value="<%= data.projeto %>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-1">
+                                                    <div class="form-group">
+                                                    <label>Forma de Cobrança</label>
+                                                    <input type="text" name="formaCobranca" class="form-control"  value="<%= data.formaCobranca %>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                    <label>Prazo</label>
+                                                    <input type="number" name="prazo" step='1' min="1" max="30" class="form-control"  value="<%= data.prazo %>" required>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                        <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                        <div class="form-group">
+                                                        <label>Faturamento</label>
+                                                        <input type="text" name="faturamento" class="form-control"  value="<%= data.IRPJ %>" required>
+                                                        </div>
+                                                    </div>
+                                            <div class="col-md-4 px-1">
+                                                <div class="form-group">
+                                                <label>Forma Pagamento Agregado</label>
+                                                <input type="hidden" id="agregadoHidden" value="<%=data.pagamentoAgregado%>"/>
+                                                <select class="form-control" id="agregado" name="pagamentoAgregado" required>
+                                                    <optgroup label="Selecione">  
+                                                        <option value="">Selecione</option> 
+                                                        <option value="Repom">Cartão Repom</option>
+                                                        <option value="Pancard">Cartão Pancard</option>
+                                                        <option value="Rodofrete">Cartão Rodofrete</option>
+                                                        <option value="PrePago">Cartão Pré-Pago</option>
+                                                        <option value="Transferencia">Transferência Bancária</option>
+                                                    </optgroup>
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pl-1">
+                                                <div class="form-group">
+                                                <label>Pedágio</label>
+                                                <input type="hidden"  id="pedagioHidden" value="<%=data.incluiPedagio%>"/>
+                                                <select class="form-control" name="incluiPedagio" id="incluiPedagio" required>
+                                                        <optgroup label="Selecione">                                                                  
+                                                            <option value="">Selecione</option>                                                       
+                                                            <option value="true">Incluir no Frete</option>
+                                                            <option value="false">Não Incluir no Frete</option>
+                                                        </optgroup>
+                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 pt-1 ">
+                                                    <div class="form-group">
+                                                    <label>Observações</label>
+                                                    <textarea class="form-control" name="observacoes" placeholder="Observações" rows="2"><%=data.observacoes%></textarea>
+                                                    </div>
+                                                </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="update ml-auto mr-auto pt-1 pb-1">
                                                 <button type="submit" id="btnSubmit" class="btn btn-info btn-fill btn-wd">Salvar</button>
                                             </div>          
                                         </div>                                        
@@ -232,11 +339,16 @@
     <script>
       $(document).ready(function () {
         var listaContatos = [];
-
+        loadContatos();
         if($("#estadohidden").val() != null){
             setSelectedIndex(document.getElementById("selectEstado"),$("#estadohidden").val()); 
         }
-
+        if($("#agregadoHidden").val() != null){
+            setSelectedIndex(document.getElementById("agregado"),$("#agregadoHidden").val()); 
+        }
+        if($("#pedagioHidden").val() != null){
+            setSelectedIndex(document.getElementById("incluiPedagio"),$("#pedagioHidden").val()); 
+        }
         $('#inputCNPJ').mask('99.999.999/9999-99', {reverse: true});                
         $('#telefoneResp').mask('(00) 0000-0000');
         /*$('#inputCelular').mask('(00) 0 0000-0000');
@@ -318,7 +430,7 @@
                 }       
             });
 
-            function loadReferencias(){
+            function loadContatos(){
           var table = document.getElementById("allContacts");
           for (var i = 0, row; row = table.rows[i]; i++) {
             var nome= "";
